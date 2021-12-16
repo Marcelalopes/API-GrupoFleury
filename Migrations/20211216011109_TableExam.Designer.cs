@@ -8,58 +8,59 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API_GrupoFleury.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
-    [Migration("20211216011109_TableExam")]
-    partial class TableExam
+  [DbContext(typeof(AppDbContext))]
+  [Migration("20211216011109_TableExam")]
+  partial class TableExam
+  {
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.12");
+      modelBuilder
+          .HasAnnotation("Relational:MaxIdentifierLength", 64)
+          .HasAnnotation("ProductVersion", "5.0.12");
 
-            modelBuilder.Entity("API_GrupoFleury.models.Client", b =>
-                {
-                    b.Property<string>("Cpf")
-                        .HasColumnType("varchar(255)");
+      modelBuilder.Entity("API_GrupoFleury.models.Client", b =>
+          {
+            b.Property<string>("Cpf")
+                      .HasColumnType("varchar(255)");
 
-                    b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("datetime");
+            b.Property<DateTime>("DataNascimento")
+                      .HasColumnType("datetime");
 
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
+            b.Property<string>("Endereco")
+                      .IsRequired()
+                      .HasColumnType("varchar(300)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+            b.Property<string>("Name")
+                      .IsRequired()
+                      .HasColumnType("varchar(100)");
 
-                    b.HasKey("Cpf")
-                        .HasName("Pk_ClientCpf");
+            b.HasKey("Cpf")
+                      .HasName("Pk_ClientCpf");
 
-                    b.ToTable("Clients");
-                });
+            b.ToTable("Clients");
+          });
 
-            modelBuilder.Entity("API_GrupoFleury.models.Exam", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+      modelBuilder.Entity("API_GrupoFleury.models.Exam", b =>
+          {
+            b.Property<Guid>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("char(36)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+            b.Property<string>("Name")
+                      .IsRequired()
+                      .HasColumnType("varchar(100)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("double");
+            b.Property<double>("Price")
+                      .HasColumnType("double")
+                      .HasPrecision(4, 2);
 
-                    b.HasKey("Id")
-                        .HasName("Pk_ClientCpf");
+            b.HasKey("Id")
+                      .HasName("Pk_ExamId");
 
-                    b.ToTable("Exams");
-                });
+            b.ToTable("Exams");
+          });
 #pragma warning restore 612, 618
-        }
     }
+  }
 }

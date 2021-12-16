@@ -11,13 +11,14 @@ namespace API_GrupoFleury.EntityConfig
       builder.ToTable("Exams");
 
       builder.HasKey(prop => prop.Id)
-          .HasName("Pk_ClientCpf");
+          .HasName("Pk_ExamId");
 
       builder.Property(prop => prop.Name)
           .HasColumnType("varchar(100)")
           .IsRequired();
       builder.Property(prop => prop.Price)
           .HasColumnType("double")
+          .HasPrecision(4, 2)
           .IsRequired();
     }
   }
