@@ -10,6 +10,7 @@ namespace API_GrupoFleury.Context
 
     public DbSet<Client> Client { get; set; }
     public DbSet<Exam> Exam { get; set; }
+    public DbSet<Scheduling> Scheduling { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -17,6 +18,7 @@ namespace API_GrupoFleury.Context
 
       modelBuilder.Entity<Client>(new ClientConfig().Configure);
       modelBuilder.Entity<Exam>(new ExamConfig().Configure);
+      modelBuilder.Entity<Scheduling>(new SchedulingConfig().Configure);
     }
   }
 }
