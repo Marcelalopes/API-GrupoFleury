@@ -13,10 +13,16 @@ namespace API_GrupoFleury.EntityConfig
       builder.HasKey(prop => prop.Id)
           .HasName("Pk_SchedulingId");
 
-      builder.Property(prop => prop.DateHour)
+      builder.Property(prop => prop.Date)
           .HasColumnType("datetime")
           .IsRequired();
-      builder.Property(prop => prop.Total)
+      builder.Property(prop => prop.HorarioI)
+      .HasColumnType("datetime")
+      .IsRequired();
+      builder.Property(prop => prop.HorarioF)
+      .HasColumnType("datetime")
+      .IsRequired();
+      builder.Property(prop => prop.ValueTotal)
           .HasColumnType("double")
           .HasPrecision(4, 2)
           .IsRequired();

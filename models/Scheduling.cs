@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using API_GrupoFleury.models;
 
@@ -10,7 +11,11 @@ namespace API_GrupoFleury.models
       Id = new Guid();
     }
     public Guid Id { get; set; }
-    public DateTime DateHour { get; set; }
-    public Double Total { get; set; }
+    public DateTime Date { get; set; }
+    public DateTime HorarioI { get; set; }
+    public DateTime HorarioF { get; set; }
+    public Double ValueTotal { get; set; }
+    public List<Exam> Exams { get; set; }
+    public Client Client { get; set; }
   }
 }

@@ -20,6 +20,9 @@ namespace API_GrupoFleury.EntityConfig
           .HasColumnType("double")
           .HasPrecision(4, 2)
           .IsRequired();
+      builder.Property(prop => prop.Duration)
+          .HasColumnType("int")
+          .IsRequired();
     }
   }
 }

@@ -12,16 +12,16 @@ namespace API_GrupoFleury.EntityConfig
 
       builder.HasKey(prop => prop.Cpf)
           .HasName("Pk_ClientCpf");
-
       builder.Property(prop => prop.Name)
           .HasColumnType("varchar(100)")
           .IsRequired();
-      builder.Property(prop => prop.Endereco)
-          .HasColumnType("varchar(300)")
-          .IsRequired();
-      builder.Property(prop => prop.DataNascimento)
+      builder.Property(prop => prop.BirthDate)
           .HasColumnType("datetime")
           .IsRequired();
+      builder.Property(prop => prop.Phone)
+      .HasColumnType("varchar(11)");
+      builder.Property(prop => prop.Email)
+      .HasColumnType("varchar(30)");
     }
   }
 }
