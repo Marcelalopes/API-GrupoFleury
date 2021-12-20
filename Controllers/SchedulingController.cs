@@ -1,6 +1,10 @@
+using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using API_GrupoFleury.models;
 using API_GrupoFleury.service;
+using API_GrupoFleury.Context;
+using System.Collections.Generic;
+using System;
 
 namespace API_GrupoFleury.controller
 {
@@ -9,33 +13,33 @@ namespace API_GrupoFleury.controller
   public class SchedulingController : ControllerBase
   {
     private readonly SchedulingService _schedulingService;
-    public SchedulingController()
+    public SchedulingController(AppDbContext context)
     {
-      _schedulingService = new SchedulingService();
+      _schedulingService = new SchedulingService(context);
     }
 
     [HttpGet("{cpf}")]
-    public string ListarAgendamento()
+    public IEnumerable<Scheduling> ListarAgendamento()
     {
       return _schedulingService.ListarPorCpf();
     }
 
     [HttpPost]
-    public Scheduling AddScheduling([FromBody] Scheduling scheduling)
+    public void AddScheduling([FromBody] Scheduling scheduling)
     {
-      return _schedulingService.Add(scheduling);
+      _schedulingService.Add(scheduling);
     }
 
     [HttpPut]
-    public string UpdateScheduling()
+    public void UpdateScheduling([FromBody] Scheduling scheduling)
     {
-      return _schedulingService.Update();
+      _schedulingService.Update(scheduling);
     }
 
-    [HttpDelete]
-    public string DeleteScheduling()
+    [HttpDelete("{id}")]
+    public void DeleteScheduling(Guid id)
     {
-      return _schedulingService.Delete();
+      _schedulingService.Delete(id);
     }
   }
 }

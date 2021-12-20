@@ -1,6 +1,11 @@
+using System.Collections;
+using System.Security.AccessControl;
 using Microsoft.AspNetCore.Mvc;
 using API_GrupoFleury.models;
 using API_GrupoFleury.service;
+using System;
+using API_GrupoFleury.Context;
+using System.Collections.Generic;
 
 namespace API_GrupoFleury.controller
 {
@@ -9,38 +14,38 @@ namespace API_GrupoFleury.controller
   public class ClientController : ControllerBase
   {
     private readonly ClientService _clientService;
-    public ClientController()
+    public ClientController(AppDbContext context)
     {
-      _clientService = new ClientService();
+      _clientService = new ClientService(context);
     }
 
     [HttpGet]
-    public string GetAllClient()
+    public IEnumerable<Client> GetAllClient()
     {
       return _clientService.GetAll();
     }
     [HttpGet("{name}")]
-    public string SearchClient()
+    public IEnumerable<Client> SearchClient()
     {
       return _clientService.Search();
     }
 
     [HttpPost]
-    public Client AddClient([FromBody] Client client)
+    public void AddClient([FromBody] Client client)
     {
-      return _clientService.Add(client);
+      _clientService.Add(client);
     }
 
     [HttpPut("{cpf}")]
-    public string UpdateClient()
+    public void UpdateClient([FromBody] Client client)
     {
-      return _clientService.Update();
+      _clientService.Update(client);
     }
 
-    [HttpDelete]
-    public string DesativarClient()
+    [HttpDelete("{cpf}")]
+    public void DesativarClient(String Cpf)
     {
-      return _clientService.Desativar();
+      _clientService.Desativar(Cpf);
     }
   }
 }

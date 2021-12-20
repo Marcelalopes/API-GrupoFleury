@@ -1,24 +1,40 @@
 using API_GrupoFleury.models;
+using System;
+using API_GrupoFleury.Context;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace API_GrupoFleury.service
 {
   public class SchedulingService
   {
-    public string ListarPorCpf()
+    private readonly AppDbContext _context;
+    public SchedulingService(AppDbContext context)
     {
-      return "Lista agendamentos de um cpf";
+      _context = context;
     }
-    public Scheduling Add(Scheduling scheduling)
+    public IEnumerable<Scheduling> ListarPorCpf()
     {
-      return scheduling;
+      return _context.Scheduling.ToList();
     }
-    public string Update()
+    public void Add(Scheduling scheduling)
     {
-      return "Atualiza data e hora de um agendamento";
+      _context.Scheduling.Add(scheduling);
+      _context.SaveChanges();
     }
-    public string Delete()
+    public void Update(Scheduling scheduling)
     {
-      return "Deleta um agendamento";
+      _context.Scheduling.Update(scheduling);
+      _context.SaveChanges();
+    }
+    public void Delete(Guid id)
+    {
+      var scheduling = _context.Scheduling.First(c => c.Id == id);
+      if (scheduling != null)
+      {
+        _context.Scheduling.Remove(scheduling);
+        _context.SaveChanges();
+      }
     }
   }
 }

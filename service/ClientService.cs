@@ -1,32 +1,52 @@
+using System.Collections;
 using API_GrupoFleury.models;
+using System;
+using API_GrupoFleury.Context;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace API_GrupoFleury.service
 {
   public class ClientService
   {
-    public string GetAll()
+    private readonly AppDbContext _context;
+
+    public ClientService(AppDbContext context)
     {
-      return "Todas os Clientes";
+      _context = context;
+    }
+    public IEnumerable<Client> GetAll()
+    {
+      return _context.Client.ToList();
     }
 
-    public string Search()
+    public IEnumerable<Client> Search()
     {
-      return "Buscar Clientes";
+      return _context.Client.ToList();
     }
 
-    public Client Add(Client client)
+    public void Add(Client client)
     {
-      return client;
+      _context.Client.Add(client);
+      _context.SaveChanges();
     }
 
-    public string Update()
+    public void Update(Client client)
     {
-      return "Atualizar Clientes";
+      _context.Client.Update(client);
+      _context.SaveChanges();
     }
 
-    public string Desativar()
+    public void Desativar(String cpf)
     {
-      return "Desativar Clientes";
+      /* Client c = _context.Get(cpf);
+      if (c == null)
+      {
+        return false;
+      }
+      c.Active = true;
+      _context.Update(c.Cpf, c);
+      return true; */
     }
   }
 }

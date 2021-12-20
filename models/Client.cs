@@ -10,6 +10,7 @@ namespace API_GrupoFleury.models
     public DateTime BirthDate { get; set; }
     public String Phone { get; set; }
     public String Email { get; set; }
+    public Boolean Active { get; set; }
     public Address Address { get; set; }
     public int AddressId { get; set; }
     public List<Scheduling> Schedulings { get; set; }

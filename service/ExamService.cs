@@ -1,25 +1,42 @@
 using API_GrupoFleury.models;
+using System;
+using API_GrupoFleury.Context;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace API_GrupoFleury.service
 {
   public class ExamService
   {
-    public string GetAll()
+    private readonly AppDbContext _context;
+
+    public ExamService(AppDbContext context)
     {
-      return "Listar Exames";
+      _context = context;
     }
-    public Exam Add(Exam exam)
+    public IEnumerable<Exam> GetAll()
     {
-      return exam;
+      return _context.Exam.ToList();
     }
-    public string Update()
+    public void Add(Exam exam)
     {
-      return "Atualiza Exame";
+      _context.Exam.Add(exam);
+      _context.SaveChanges();
     }
-    public string Delete()
+    public void Update(Exam exam)
     {
-      return "Deleta Exame";
+      _context.Exam.Update(exam);
+      _context.SaveChanges();
+    }
+    public void Delete(Guid id)
+    {
+      var exam = _context.Exam.First(c => c.Id == id);
+      if (exam != null)
+      {
+        _context.Exam.Remove(exam);
+        _context.SaveChanges();
+      }
     }
   }
 }

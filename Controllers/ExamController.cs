@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using API_GrupoFleury.models;
 using API_GrupoFleury.service;
+using System;
+using API_GrupoFleury.Context;
+using System.Collections.Generic;
 
 namespace API_GrupoFleury.controller
 {
@@ -10,33 +13,33 @@ namespace API_GrupoFleury.controller
   {
     private readonly ExamService _examService;
 
-    public ExamController()
+    public ExamController(AppDbContext context)
     {
-      _examService = new ExamService();
+      _examService = new ExamService(context);
     }
 
     [HttpGet]
-    public string GetAllExams()
+    public IEnumerable<Exam> GetAllExams()
     {
       return _examService.GetAll();
     }
 
     [HttpPost]
-    public Exam AddExam([FromBody] Exam exam)
+    public void AddExam([FromBody] Exam exam)
     {
-      return _examService.Add(exam);
+      _examService.Add(exam);
     }
 
     [HttpPut("{id}")]
-    public string UpdateExam()
+    public void UpdateExam([FromBody] Exam exam)
     {
-      return _examService.Update();
+      _examService.Update(exam);
     }
 
     [HttpDelete("{id}")]
-    public string DeleteExam()
+    public void DeleteExam(Guid id)
     {
-      return _examService.Delete();
+      _examService.Delete(id);
     }
   }
 }
