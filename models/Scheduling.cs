@@ -17,5 +17,6 @@ namespace API_GrupoFleury.models
     public Double ValueTotal { get; set; }
     public List<Exam> Exams { get; set; }
     public Client Client { get; set; }
+    public String ClientCpf { get; set; }
   }
 }

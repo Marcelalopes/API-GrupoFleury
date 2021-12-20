@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using System;
 using API_GrupoFleury.models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+// using System.Data.Entity.ModelConfiguration;
 
 namespace API_GrupoFleury.EntityConfig
 {
@@ -26,6 +28,13 @@ namespace API_GrupoFleury.EntityConfig
           .HasColumnType("double")
           .HasPrecision(4, 2)
           .IsRequired();
+      builder.HasOne(s => s.Client)
+          .WithMany(c => c.Schedulings)
+          .HasForeignKey(s => s.ClientCpf)
+          .IsRequired();
+      /* builder.HasMany(s => s.Exams)
+          .WithMany(e => e.Schedulings)
+          .Map(x => x.toTable("ExamScheduling").MapLeftKey("SchedulingId").MapRightKey("ExamId")); */    
     }
   }
 }

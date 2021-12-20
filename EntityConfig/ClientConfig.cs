@@ -19,9 +19,9 @@ namespace API_GrupoFleury.EntityConfig
           .HasColumnType("datetime")
           .IsRequired();
       builder.Property(prop => prop.Phone)
-      .HasColumnType("varchar(11)");
+          .HasColumnType("varchar(11)");
       builder.Property(prop => prop.Email)
-      .HasColumnType("varchar(30)");
+          .HasColumnType("varchar(30)");
     }
   }
 }

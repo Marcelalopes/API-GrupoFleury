@@ -27,7 +27,10 @@ namespace API_GrupoFleury.EntityConfig
       builder.Property(prop => prop.City)
         .HasColumnType("varchar(20)")
         .IsRequired();
-
+      builder.HasMany(c => c.Clients)
+          .WithOne(a => a.Address)
+          .HasForeignKey(c => c.Cpf)
+          .IsRequired();
     }
   }
 }

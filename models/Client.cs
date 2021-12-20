@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace API_GrupoFleury.models
 {
@@ -10,5 +11,7 @@ namespace API_GrupoFleury.models
     public String Phone { get; set; }
     public String Email { get; set; }
     public Address Address { get; set; }
+    public int AddressId { get; set; }
+    public List<Scheduling> Schedulings { get; set; }
   }
 }
