@@ -4,6 +4,7 @@ using API_GrupoFleury.service;
 using System;
 using API_GrupoFleury.Context;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace API_GrupoFleury.controller
 {
@@ -19,27 +20,32 @@ namespace API_GrupoFleury.controller
     }
 
     [HttpGet]
-    public IEnumerable<Exam> GetAllExams()
+    public ActionResult<IEnumerable<Exam>> GetAllExams()
     {
-      return _examService.GetAll();
+      return new ObjectResult(_examService.GetAll().ToList());
     }
 
     [HttpPost]
-    public void AddExam([FromBody] Exam exam)
+    public ActionResult<Exam> AddExam([FromBody] Exam exam)
     {
-      _examService.Add(exam);
+      var result = _examService.Add(exam);
+      return new CreatedResult("", result);
     }
 
-    [HttpPut("{id}")]
-    public void UpdateExam([FromBody] Exam exam)
+    [HttpPut("{id}:Guid")]
+    public ActionResult UpdateExam([FromBody] Exam exam, Guid id)
     {
+      if (id != exam.Id)
+        return new BadRequestResult();
       _examService.Update(exam);
+      return new OkObjectResult(exam);
     }
 
-    [HttpDelete("{id}")]
-    public void DeleteExam(Guid id)
+    [HttpDelete("{id}:Guid")]
+    public ActionResult DeleteExam(Guid id)
     {
-      _examService.Delete(id);
+      var result = _examService.Delete(id);
+      return result ? new OkResult() : new NotFoundResult();
     }
   }
 }

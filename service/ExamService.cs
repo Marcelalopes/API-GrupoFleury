@@ -19,24 +19,27 @@ namespace API_GrupoFleury.service
     {
       return _context.Exam.ToList();
     }
-    public void Add(Exam exam)
+    public Exam Add(Exam exam)
     {
       _context.Exam.Add(exam);
       _context.SaveChanges();
+      return exam;
     }
     public void Update(Exam exam)
     {
       _context.Exam.Update(exam);
       _context.SaveChanges();
     }
-    public void Delete(Guid id)
+    public Boolean Delete(Guid id)
     {
-      var exam = _context.Exam.First(c => c.Id == id);
-      if (exam != null)
-      {
-        _context.Exam.Remove(exam);
-        _context.SaveChanges();
-      }
+      var exam = _context.Exam.FirstOrDefault(c => c.Id == id);
+
+      if (exam == null)
+        return false;
+
+      _context.Exam.Remove(exam);
+      _context.SaveChanges();
+      return true;
     }
   }
 }

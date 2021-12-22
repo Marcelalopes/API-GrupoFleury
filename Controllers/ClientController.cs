@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Security.AccessControl;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using API_GrupoFleury.models;
 using API_GrupoFleury.service;
@@ -20,32 +19,38 @@ namespace API_GrupoFleury.controller
     }
 
     [HttpGet]
-    public IEnumerable<Client> GetAllClient()
+    public ActionResult<IEnumerable<Client>> GetAllClient()
     {
-      return _clientService.GetAll();
+      return new ObjectResult(_clientService.GetAll().ToList());
     }
     [HttpGet("{cpf}")]
-    public Client SearchClient([FromBody] String cpf)
+    public ActionResult<Client> SearchClient([FromBody] String cpf)
     {
-      return _clientService.Search(cpf);
+      return new ObjectResult(_clientService.Search(cpf));
     }
 
     [HttpPost]
-    public void AddClient([FromBody] Client client)
+    public ActionResult<Client> AddClient([FromBody] Client client)
     {
-      _clientService.Add(client);
+      var result = _clientService.Add(client);
+      return new CreatedResult("", result);
     }
 
-    [HttpPut("{cpf}")]
-    public void UpdateClient([FromBody] Client client)
+    [HttpPut("{cpf}:String")]
+    public ActionResult UpdateClient([FromBody] Client client, String cpf)
     {
+      if (cpf != client.Cpf)
+        return new BadRequestResult();
+
       _clientService.Update(client);
+      return new OkObjectResult(client);
     }
 
-    [HttpDelete("{cpf}")]
-    public void DesativarClient(String Cpf)
+    [HttpDelete("{cpf}:String")]
+    public ActionResult DesativarClient(String Cpf)
     {
-      _clientService.Desativar(Cpf);
+      var result = _clientService.Desativar(Cpf);
+      return result ? new OkResult() : new NotFoundResult();
     }
   }
 }

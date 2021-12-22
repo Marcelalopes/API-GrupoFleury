@@ -13,28 +13,30 @@ namespace API_GrupoFleury.service
     {
       _context = context;
     }
-    public IEnumerable<Scheduling> ListarPorCpf()
+    public Scheduling ListarPorCpf(String cpf)
     {
-      return _context.Scheduling.ToList();
+      var scheduling = _context.Scheduling.FirstOrDefault(c => c.ClientCpf == cpf);
+      return scheduling;
     }
-    public void Add(Scheduling scheduling)
+    public Scheduling Add(Scheduling scheduling)
     {
       _context.Scheduling.Add(scheduling);
       _context.SaveChanges();
+      return scheduling;
     }
     public void Update(Scheduling scheduling)
     {
       _context.Scheduling.Update(scheduling);
       _context.SaveChanges();
     }
-    public void Delete(Guid id)
+    public Boolean Delete(Guid id)
     {
-      var scheduling = _context.Scheduling.First(c => c.Id == id);
-      if (scheduling != null)
-      {
-        _context.Scheduling.Remove(scheduling);
-        _context.SaveChanges();
-      }
+      var scheduling = _context.Scheduling.FirstOrDefault(c => c.Id == id);
+      if (scheduling == null)
+        return false;
+      _context.Scheduling.Remove(scheduling);
+      _context.SaveChanges();
+      return true;
     }
   }
 }

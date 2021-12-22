@@ -18,28 +18,34 @@ namespace API_GrupoFleury.controller
       _schedulingService = new SchedulingService(context);
     }
 
-    [HttpGet("{cpf}")]
-    public IEnumerable<Scheduling> ListarAgendamento()
+    [HttpGet("{cpf}:String")]
+    public ActionResult<Scheduling> ListarAgendamento(String cpf)
     {
-      return _schedulingService.ListarPorCpf();
+      return new ObjectResult(_schedulingService.ListarPorCpf(cpf));
     }
 
     [HttpPost]
-    public void AddScheduling([FromBody] Scheduling scheduling)
+    public ActionResult<Scheduling> AddScheduling([FromBody] Scheduling scheduling)
     {
-      _schedulingService.Add(scheduling);
+      var result = _schedulingService.Add(scheduling);
+      return new CreatedResult("", result);
     }
 
-    [HttpPut]
-    public void UpdateScheduling([FromBody] Scheduling scheduling)
+    [HttpPut("{id}:Guid")]
+    public ActionResult UpdateScheduling([FromBody] Scheduling scheduling, Guid id)
     {
+      if (id != scheduling.Id)
+        return new BadRequestResult();
+
       _schedulingService.Update(scheduling);
+      return new OkObjectResult(scheduling);
     }
 
-    [HttpDelete("{id}")]
-    public void DeleteScheduling(Guid id)
+    [HttpDelete("{id}:Guid")]
+    public ActionResult DeleteScheduling(Guid id)
     {
-      _schedulingService.Delete(id);
+      var result = _schedulingService.Delete(id);
+      return result ? new OkResult() : new NotFoundResult();
     }
   }
 }

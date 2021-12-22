@@ -26,10 +26,11 @@ namespace API_GrupoFleury.service
       return client;
     }
 
-    public void Add(Client client)
+    public Client Add(Client client)
     {
       _context.Client.Add(client);
       _context.SaveChanges();
+      return client;
     }
 
     public void Update(Client client)
@@ -38,14 +39,15 @@ namespace API_GrupoFleury.service
       _context.SaveChanges();
     }
 
-    public void Desativar(String cpf)
+    public Boolean Desativar(String cpf)
     {
-      var client = _context.Client.First(c => c.Cpf == cpf);
+      var client = _context.Client.FirstOrDefault(c => c.Cpf == cpf);
       if (client.isDesable != true)
       {
         client.isDesable = true;
         _context.SaveChanges();
       }
+      return client.isDesable;
     }
   }
 }
