@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace API_GrupoFleury.service
 {
-  public class SchedulingService
+  public class SchedulingService : ISchedulingService
   {
     private readonly AppDbContext _context;
     public SchedulingService(AppDbContext context)

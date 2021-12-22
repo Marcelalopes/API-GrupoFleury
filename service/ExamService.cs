@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace API_GrupoFleury.service
 {
-  public class ExamService
+  public class ExamService : IExamService
   {
     private readonly AppDbContext _context;
 

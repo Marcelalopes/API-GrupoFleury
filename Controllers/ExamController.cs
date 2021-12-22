@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using API_GrupoFleury.models;
 using API_GrupoFleury.service;
 using System;
-using API_GrupoFleury.Context;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,11 +11,11 @@ namespace API_GrupoFleury.controller
   [Route("api/[controller]")]
   public class ExamController : ControllerBase
   {
-    private readonly ExamService _examService;
+    private readonly IExamService _examService;
 
-    public ExamController(AppDbContext context)
+    public ExamController(IExamService examService)
     {
-      _examService = new ExamService(context);
+      _examService = examService;
     }
 
     [HttpGet]

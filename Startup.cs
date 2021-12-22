@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using API_GrupoFleury.Context;
+using API_GrupoFleury.service;
 
 namespace API_GrupoFleury
 {
@@ -40,6 +41,10 @@ namespace API_GrupoFleury
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_GrupoFleury", Version = "v1" });
       });
+      // Injeção de Dependência
+      services.AddScoped<IClientService, ClientService>();
+      services.AddScoped<IExamService, ExamService>();
+      services.AddScoped<ISchedulingService, SchedulingService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

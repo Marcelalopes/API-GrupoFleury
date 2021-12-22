@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using API_GrupoFleury.models;
 using API_GrupoFleury.service;
 using System;
-using API_GrupoFleury.Context;
 using System.Collections.Generic;
 
 namespace API_GrupoFleury.controller
@@ -12,10 +11,10 @@ namespace API_GrupoFleury.controller
   [Route("api/[controller]")]
   public class ClientController : ControllerBase
   {
-    private readonly ClientService _clientService;
-    public ClientController(AppDbContext context)
+    private readonly IClientService _clientService;
+    public ClientController(IClientService clientService)
     {
-      _clientService = new ClientService(context);
+      _clientService = clientService;
     }
 
     [HttpGet]
