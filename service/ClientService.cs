@@ -20,9 +20,10 @@ namespace API_GrupoFleury.service
       return _context.Client.ToList();
     }
 
-    public IEnumerable<Client> Search()
+    public Client Search(String cpf)
     {
-      return _context.Client.ToList();
+      var client = _context.Client.First(c => c.Cpf == cpf);
+      return client;
     }
 
     public void Add(Client client)
@@ -39,14 +40,12 @@ namespace API_GrupoFleury.service
 
     public void Desativar(String cpf)
     {
-      /* Client c = _context.Get(cpf);
-      if (c == null)
+      var client = _context.Client.First(c => c.Cpf == cpf);
+      if (client.isDesable != true)
       {
-        return false;
+        client.isDesable = true;
+        _context.SaveChanges();
       }
-      c.Active = true;
-      _context.Update(c.Cpf, c);
-      return true; */
     }
   }
 }

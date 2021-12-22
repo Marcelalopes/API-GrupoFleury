@@ -24,10 +24,10 @@ namespace API_GrupoFleury.controller
     {
       return _clientService.GetAll();
     }
-    [HttpGet("{name}")]
-    public IEnumerable<Client> SearchClient()
+    [HttpGet("{cpf}")]
+    public Client SearchClient([FromBody] String cpf)
     {
-      return _clientService.Search();
+      return _clientService.Search(cpf);
     }
 
     [HttpPost]
