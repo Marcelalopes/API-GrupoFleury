@@ -51,6 +51,9 @@ namespace API_GrupoFleury
 
       services.AddScoped<ISchedulingService, SchedulingService>();
       services.AddScoped<ISchedulingRepository, SchedulingRepository>();
+
+      services.AddScoped<IAddressService, AddressService>();
+      services.AddScoped<IAddressRepository, AddressRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -29,7 +29,7 @@ namespace API_GrupoFleury.Repository
         client.isDesable = true;
         _context.SaveChanges();
       }
-      return client.isDesable;
+      return false;
     }
 
     public IEnumerable<Client> GetAll()

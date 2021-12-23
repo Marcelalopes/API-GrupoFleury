@@ -4,7 +4,11 @@ namespace API_GrupoFleury.models
 {
   public class Address
   {
-    public int Id { get; set; }
+    public Address()
+    {
+      Id = new Guid();
+    }
+    public Guid Id { get; set; }
     public String Street { get; set; }
     public int Number { get; set; }
     public String District { get; set; }
