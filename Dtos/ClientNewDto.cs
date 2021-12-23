@@ -11,7 +11,6 @@ namespace API_GrupoFleury.Dtos
     public String Phone { get; set; }
     public String Email { get; set; }
     public Boolean isDesable { get; set; }
-    public Address Address { get; set; }
-    public int AddressId { get; set; }
+    public Guid AddressId { get; set; }
   }
 }

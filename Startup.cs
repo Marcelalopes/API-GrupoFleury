@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using API_GrupoFleury.Context;
 using API_GrupoFleury.service;
 using API_GrupoFleury.Repository;
+using API_GrupoFleury.config;
 
 namespace API_GrupoFleury
 {
@@ -54,6 +55,9 @@ namespace API_GrupoFleury
 
       services.AddScoped<IAddressService, AddressService>();
       services.AddScoped<IAddressRepository, AddressRepository>();
+
+      //AutoMapper
+      services.AddAutoMapper(typeof(AutoMapperProfile));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

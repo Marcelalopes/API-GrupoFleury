@@ -1,58 +1,36 @@
+using System.Collections;
 using API_GrupoFleury.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using API_GrupoFleury.Repository;
 using API_GrupoFleury.Dtos;
-
-
+using AutoMapper;
 
 namespace API_GrupoFleury.service
 {
   public class ExamService : IExamService
   {
     private readonly IExamRepository _examRepository;
+    private readonly IMapper _mapper;
 
-    public ExamService(IExamRepository examRepository)
+    public ExamService(IExamRepository examRepository, IMapper mapper)
     {
       _examRepository = examRepository;
+      _mapper = mapper;
     }
     public IEnumerable<ExamsDto> GetAll()
     {
-      var result = _examRepository.GetAll().ToList();
-      List<ExamsDto> listResult = new List<ExamsDto>();
-      foreach (var client in result)
-      {
-        listResult.Add(new ExamsDto()
-        {
-          Id = client.Id,
-          Name = client.Name,
-          Duration = client.Duration,
-          Price = client.Price
-        });
-      }
-      return listResult;
+      return _mapper.Map<IEnumerable<ExamsDto>>(_examRepository.GetAll().ToList());
     }
     public ExamNewDto Add(ExamNewDto newExam)
     {
-      Exam exam = new Exam()
-      {
-        Name = newExam.Name,
-        Duration = newExam.Duration,
-        Price = newExam.Price
-      };
-      _examRepository.add(exam);
+      _examRepository.add(_mapper.Map<Exam>(newExam));
       return newExam;
     }
     public void Update(ExamsDto updateExam)
     {
-      Exam exam = new Exam()
-      {
-        Name = updateExam.Name,
-        Duration = updateExam.Duration,
-        Price = updateExam.Price
-      };
-      _examRepository.Update(exam);
+      _examRepository.Update(_mapper.Map<Exam>(updateExam));
     }
     public Boolean Delete(Guid id)
     {

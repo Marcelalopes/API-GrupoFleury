@@ -2,28 +2,22 @@ using API_GrupoFleury.models;
 using System;
 using API_GrupoFleury.Repository;
 using API_GrupoFleury.Dtos;
+using AutoMapper;
 
 namespace API_GrupoFleury.service
 {
   public class AddressService : IAddressService
   {
     private readonly IAddressRepository _addressRepository;
-    public AddressService(IAddressRepository addressRepository)
+    private readonly IMapper _mapper;
+    public AddressService(IAddressRepository addressRepository, IMapper mapper)
     {
       _addressRepository = addressRepository;
+      _mapper = mapper;
     }
     public AddressNewDto Add(AddressNewDto newAddress)
     {
-      Address address = new Address()
-      {
-        Street = newAddress.Street,
-        Number = newAddress.Number,
-        District = newAddress.District,
-        ZipCode = newAddress.ZipCode,
-        City = newAddress.City,
-        ClientCpf = newAddress.ClientCpf
-      };
-      _addressRepository.add(address);
+      _addressRepository.add(_mapper.Map<Address>(newAddress));
       return newAddress;
     }
 
@@ -34,17 +28,7 @@ namespace API_GrupoFleury.service
 
     public void Update(AdressesDto updateAddress)
     {
-      Address address = new Address()
-      {
-        Id = updateAddress.Id,
-        Street = updateAddress.Street,
-        Number = updateAddress.Number,
-        District = updateAddress.District,
-        ZipCode = updateAddress.ZipCode,
-        City = updateAddress.City
-
-      };
-      _addressRepository.Update(address);
+      _addressRepository.Update(_mapper.Map<Address>(updateAddress));
     }
   }
 }

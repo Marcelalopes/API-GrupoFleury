@@ -12,7 +12,7 @@ namespace API_GrupoFleury.models
     public String Email { get; set; }
     public Boolean isDesable { get; set; }
     public Address Address { get; set; }
-    public int AddressId { get; set; }
+    public Guid AddressId { get; set; }
     public List<Scheduling> Schedulings { get; set; }
   }
 }
