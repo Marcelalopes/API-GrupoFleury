@@ -4,6 +4,7 @@ using API_GrupoFleury.models;
 using API_GrupoFleury.service;
 using System;
 using System.Collections.Generic;
+using API_GrupoFleury.Dtos;
 
 namespace API_GrupoFleury.controller
 {
@@ -18,25 +19,25 @@ namespace API_GrupoFleury.controller
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Client>> GetAllClient()
+    public ActionResult<IEnumerable<ClientsDto>> GetAllClient()
     {
       return new ObjectResult(_clientService.GetAll().ToList());
     }
     [HttpGet("{cpf}")]
-    public ActionResult<Client> SearchClient([FromBody] String cpf)
+    public ActionResult<ClientsDto> SearchClient([FromBody] String cpf)
     {
       return new ObjectResult(_clientService.Search(cpf));
     }
 
     [HttpPost]
-    public ActionResult<Client> AddClient([FromBody] Client client)
+    public ActionResult<ClientNewDto> AddClient([FromBody] ClientNewDto client)
     {
       var result = _clientService.Add(client);
       return new CreatedResult("", result);
     }
 
     [HttpPut("{cpf}:String")]
-    public ActionResult UpdateClient([FromBody] Client client, String cpf)
+    public ActionResult UpdateClient([FromBody] ClientsDto client, String cpf)
     {
       if (cpf != client.Cpf)
         return new BadRequestResult();

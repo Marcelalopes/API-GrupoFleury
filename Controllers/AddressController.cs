@@ -4,6 +4,7 @@ using API_GrupoFleury.service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using API_GrupoFleury.Dtos;
 
 namespace API_GrupoFleury.Controllers
 {
@@ -19,14 +20,14 @@ namespace API_GrupoFleury.Controllers
 
     [HttpPost]
 
-    public ActionResult<Address> AddAddress([FromBody] Address address)
+    public ActionResult<AddressNewDto> AddAddress([FromBody] AddressNewDto address)
     {
       var result = _addressService.Add(address);
       return new CreatedResult("", result);
     }
 
     [HttpPut("{id}:Guid")]
-    public ActionResult UpdateAddress([FromBody] Address address, Guid id)
+    public ActionResult UpdateAddress([FromBody] AdressesDto address, Guid id)
     {
       if (id != address.Id)
         return new BadRequestResult();

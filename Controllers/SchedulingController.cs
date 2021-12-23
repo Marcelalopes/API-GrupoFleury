@@ -4,6 +4,7 @@ using API_GrupoFleury.models;
 using API_GrupoFleury.service;
 using System.Collections.Generic;
 using System;
+using API_GrupoFleury.Dtos;
 
 namespace API_GrupoFleury.controller
 {
@@ -18,20 +19,20 @@ namespace API_GrupoFleury.controller
     }
 
     [HttpGet("{cpf}:String")]
-    public ActionResult<Scheduling> ListarAgendamento(String cpf)
+    public ActionResult<SchedulingsDto> ListarAgendamento(String cpf)
     {
       return new ObjectResult(_schedulingService.ListarPorCpf(cpf));
     }
 
     [HttpPost]
-    public ActionResult<Scheduling> AddScheduling([FromBody] Scheduling scheduling)
+    public ActionResult<SchedulingNewDto> AddScheduling([FromBody] SchedulingNewDto scheduling)
     {
       var result = _schedulingService.Add(scheduling);
       return new CreatedResult("", result);
     }
 
     [HttpPut("{id}:Guid")]
-    public ActionResult UpdateScheduling([FromBody] Scheduling scheduling, Guid id)
+    public ActionResult UpdateScheduling([FromBody] SchedulingsDto scheduling, Guid id)
     {
       if (id != scheduling.Id)
         return new BadRequestResult();

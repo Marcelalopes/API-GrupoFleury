@@ -4,6 +4,7 @@ using API_GrupoFleury.service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using API_GrupoFleury.Dtos;
 
 namespace API_GrupoFleury.controller
 {
@@ -19,20 +20,20 @@ namespace API_GrupoFleury.controller
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Exam>> GetAllExams()
+    public ActionResult<IEnumerable<ExamsDto>> GetAllExams()
     {
       return new ObjectResult(_examService.GetAll().ToList());
     }
 
     [HttpPost]
-    public ActionResult<Exam> AddExam([FromBody] Exam exam)
+    public ActionResult<ExamNewDto> AddExam([FromBody] ExamNewDto exam)
     {
       var result = _examService.Add(exam);
       return new CreatedResult("", result);
     }
 
     [HttpPut("{id}:Guid")]
-    public ActionResult UpdateExam([FromBody] Exam exam, Guid id)
+    public ActionResult UpdateExam([FromBody] ExamsDto exam, Guid id)
     {
       if (id != exam.Id)
         return new BadRequestResult();

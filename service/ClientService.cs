@@ -1,4 +1,4 @@
-using System.Collections;
+using API_GrupoFleury.Dtos;
 using API_GrupoFleury.models;
 using System;
 using System.Collections.Generic;
@@ -15,30 +15,74 @@ namespace API_GrupoFleury.service
     {
       _clientRepository = clientRepository;
     }
-    public IEnumerable<Client> GetAll()
+    public IEnumerable<ClientsDto> GetAll()
     {
-      return _clientRepository.GetAll().ToList();
+      var result = _clientRepository.GetAll().ToList();
+
+      List<ClientsDto> listResult = new List<ClientsDto>();
+
+      foreach (var client in result)
+      {
+        listResult.Add(new ClientsDto()
+        {
+          Cpf = client.Cpf,
+          Name = client.Name,
+          BirthDate = client.BirthDate,
+          Phone = client.Phone,
+          Email = client.Email
+        });
+      }
+
+      return listResult;
     }
 
-    public Client Search(String cpf)
+    public ClientNewDto Add(ClientNewDto newClient)
     {
-      return _clientRepository.Search(cpf);
-    }
+      Client client = new Client()
+      {
+        Cpf = newClient.Cpf,
+        Name = newClient.Name,
+        BirthDate = newClient.BirthDate,
+        Phone = newClient.Phone,
+        Email = newClient.Email,
+        AddressId = newClient.AddressId,
+        isDesable = newClient.isDesable
+      };
 
-    public Client Add(Client client)
-    {
       _clientRepository.add(client);
-      return client;
+      return newClient;
     }
 
-    public void Update(Client client)
+    public void Update(ClientsDto updateClient)
     {
+      Client client = new Client()
+      {
+        Cpf = updateClient.Cpf,
+        Name = updateClient.Name,
+        BirthDate = updateClient.BirthDate,
+        Phone = updateClient.Phone,
+        Email = updateClient.Email
+      };
       _clientRepository.Update(client);
     }
 
     public Boolean Desativar(String cpf)
     {
       return _clientRepository.Desativar(cpf);
+    }
+
+    public ClientsDto Search(string cpf)
+    {
+      var result = _clientRepository.Search(cpf);
+      ClientsDto client = new ClientsDto()
+      {
+        Cpf = result.Cpf,
+        Name = result.Name,
+        BirthDate = result.BirthDate,
+        Phone = result.Phone,
+        Email = result.Email
+      };
+      return client;
     }
   }
 }

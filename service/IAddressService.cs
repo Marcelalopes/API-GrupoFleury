@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using API_GrupoFleury.models;
+using API_GrupoFleury.Dtos;
 
 namespace API_GrupoFleury.service
 {
   public interface IAddressService
   {
-    Address Add(Address address);
-    void Update(Address address);
+    AddressNewDto Add(AddressNewDto address);
+    void Update(AdressesDto address);
     Boolean Delete(Guid id);
   }
 }
