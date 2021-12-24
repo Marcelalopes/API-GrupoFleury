@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using API_GrupoFleury.models;
 using API_GrupoFleury.Context;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_GrupoFleury.Repository
 {
@@ -15,10 +17,11 @@ namespace API_GrupoFleury.Repository
       _context = context;
     }
 
-    public void add(Client client)
+    public async Task<Client> add(Client client)
     {
-      _context.Client.Add(client);
+      var result = await _context.Client.AddAsync(client);
       _context.SaveChanges();
+      return result.Entity;
     }
 
     public Boolean Desativar(String cpf)
@@ -32,14 +35,14 @@ namespace API_GrupoFleury.Repository
       return false;
     }
 
-    public IEnumerable<Client> GetAll()
+    public async Task<IEnumerable<Client>> GetAll()
     {
-      return _context.Client.ToList();
+      return await _context.Client.ToListAsync();
     }
 
-    public Client Search(string cpf)
+    public async Task<Client> Search(string cpf)
     {
-      var client = _context.Client.First(c => c.Cpf == cpf);
+      var client = await _context.Client.FirstAsync(c => c.Cpf == cpf);
       return client;
     }
 

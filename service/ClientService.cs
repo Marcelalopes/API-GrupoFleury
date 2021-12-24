@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using API_GrupoFleury.Repository;
 using AutoMapper;
+using System.Threading.Tasks;
 
 namespace API_GrupoFleury.service
 {
@@ -19,15 +20,16 @@ namespace API_GrupoFleury.service
       _clientRepository = clientRepository;
       _mapper = mapper;
     }
-    public IEnumerable<ClientsDto> GetAll()
+    public async Task<IEnumerable<ClientsDto>> GetAll()
     {
-      return _mapper.Map<IEnumerable<ClientsDto>>(_clientRepository.GetAll().ToList());
+      var result = await _clientRepository.GetAll();
+      return _mapper.Map<IEnumerable<ClientsDto>>(result);
     }
 
-    public ClientNewDto Add(ClientNewDto newClient)
+    public async Task<ClientNewDto> Add(ClientNewDto newClient)
     {
-      _clientRepository.add(_mapper.Map<Client>(newClient));
-      return newClient;
+      var result = await _clientRepository.add(_mapper.Map<Client>(newClient));
+      return _mapper.Map<ClientNewDto>(result);
     }
 
     public void Update(ClientsDto updateClient)
@@ -40,9 +42,10 @@ namespace API_GrupoFleury.service
       return _clientRepository.Desativar(cpf);
     }
 
-    public ClientsDto Search(string cpf)
+    public async Task<ClientsDto> Search(string cpf)
     {
-      return _mapper.Map<ClientsDto>(_clientRepository.Search(cpf));
+      var result = await _clientRepository.Search(cpf);
+      return _mapper.Map<ClientsDto>(result);
     }
   }
 }

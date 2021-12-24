@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using API_GrupoFleury.Dtos;
+using System.Threading.Tasks;
 
 namespace API_GrupoFleury.controller
 {
@@ -20,15 +21,16 @@ namespace API_GrupoFleury.controller
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<ExamsDto>> GetAllExams()
+    public async Task<ActionResult<IEnumerable<ExamsDto>>> GetAllExams()
     {
-      return new ObjectResult(_examService.GetAll().ToList());
+      var result = await _examService.GetAll();
+      return new ObjectResult(result);
     }
 
     [HttpPost]
-    public ActionResult<ExamNewDto> AddExam([FromBody] ExamNewDto exam)
+    public async Task<ActionResult> AddExam([FromBody] ExamNewDto exam)
     {
-      var result = _examService.Add(exam);
+      var result = await _examService.Add(exam);
       return new CreatedResult("", result);
     }
 

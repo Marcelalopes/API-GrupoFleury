@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using API_GrupoFleury.models;
@@ -7,8 +8,8 @@ namespace API_GrupoFleury.service
 {
   public interface ISchedulingService
   {
-    SchedulingsDto ListarPorCpf(String cpf);
-    SchedulingNewDto Add(SchedulingNewDto scheduling);
+    Task<SchedulingsDto> ListarPorCpf(String cpf);
+    Task<SchedulingNewDto> Add(SchedulingNewDto scheduling);
     void Update(SchedulingsDto scheduling);
     Boolean Delete(Guid id);
   }

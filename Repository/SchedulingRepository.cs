@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using API_GrupoFleury.models;
 using API_GrupoFleury.Context;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_GrupoFleury.Repository
 {
@@ -14,10 +16,11 @@ namespace API_GrupoFleury.Repository
       _context = context;
     }
 
-    public void add(Scheduling scheduling)
+    public async Task<Scheduling> add(Scheduling scheduling)
     {
-      _context.Scheduling.Add(scheduling);
+      var result = await _context.Scheduling.AddAsync(scheduling);
       _context.SaveChanges();
+      return result.Entity;
     }
 
     public bool Delete(Guid id)
@@ -32,9 +35,9 @@ namespace API_GrupoFleury.Repository
       return true;
     }
 
-    public Scheduling ListarPorCpf(String cpf)
+    public async Task<Scheduling> ListarPorCpf(String cpf)
     {
-      var scheduling = _context.Scheduling.First(s => s.ClientCpf == cpf);
+      var scheduling = await _context.Scheduling.FirstAsync(s => s.ClientCpf == cpf);
       return scheduling;
     }
 

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using API_GrupoFleury.models;
 using API_GrupoFleury.service;
@@ -20,9 +21,9 @@ namespace API_GrupoFleury.Controllers
 
     [HttpPost]
 
-    public ActionResult<AddressNewDto> AddAddress([FromBody] AddressNewDto address)
+    public async Task<ActionResult> AddAddress([FromBody] AddressNewDto address)
     {
-      var result = _addressService.Add(address);
+      var result = await _addressService.Add(address);
       return new CreatedResult("", result);
     }
 

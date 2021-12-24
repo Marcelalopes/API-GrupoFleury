@@ -9,16 +9,16 @@ namespace API_GrupoFleury.config
 
     public AutoMapperProfile()
     {
-      CreateMap<ClientNewDto, Client>();
+      CreateMap<ClientNewDto, Client>().ReverseMap();
       CreateMap<Client, ClientsDto>().ReverseMap();
 
-      CreateMap<ExamNewDto, Exam>();
+      CreateMap<ExamNewDto, Exam>().ReverseMap();
       CreateMap<Exam, ExamsDto>().ReverseMap();
 
-      CreateMap<SchedulingNewDto, Scheduling>();
+      CreateMap<SchedulingNewDto, Scheduling>().ReverseMap();
       CreateMap<Scheduling, SchedulingsDto>().ReverseMap();
 
-      CreateMap<AddressNewDto, Address>();
+      CreateMap<AddressNewDto, Address>().ReverseMap();
       CreateMap<Address, AdressesDto>().ReverseMap();
     }
 

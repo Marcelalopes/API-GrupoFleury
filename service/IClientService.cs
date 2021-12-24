@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using API_GrupoFleury.models;
@@ -7,9 +8,9 @@ namespace API_GrupoFleury.service
 {
   public interface IClientService
   {
-    IEnumerable<ClientsDto> GetAll();
-    ClientsDto Search(String cpf);
-    ClientNewDto Add(ClientNewDto client);
+    Task<IEnumerable<ClientsDto>> GetAll();
+    Task<ClientsDto> Search(String cpf);
+    Task<ClientNewDto> Add(ClientNewDto client);
     void Update(ClientsDto client);
     Boolean Desativar(String cpf);
   }

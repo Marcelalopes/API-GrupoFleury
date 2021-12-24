@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using API_GrupoFleury.models;
 using API_GrupoFleury.Context;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_GrupoFleury.Repository
 {
@@ -15,10 +17,11 @@ namespace API_GrupoFleury.Repository
       _context = context;
     }
 
-    public void add(Exam exam)
+    public async Task<Exam> add(Exam exam)
     {
-      _context.Exam.Add(exam);
+      var result = await _context.Exam.AddAsync(exam);
       _context.SaveChanges();
+      return result.Entity;
     }
 
     public bool Delete(Guid id)
@@ -33,9 +36,9 @@ namespace API_GrupoFleury.Repository
       return true;
     }
 
-    public IEnumerable<Exam> GetAll()
+    public async Task<IEnumerable<Exam>> GetAll()
     {
-      return _context.Exam.ToList();
+      return await _context.Exam.ToListAsync();
     }
 
     public void Update(Exam exam)

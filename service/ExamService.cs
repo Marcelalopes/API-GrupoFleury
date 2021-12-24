@@ -6,6 +6,7 @@ using System.Linq;
 using API_GrupoFleury.Repository;
 using API_GrupoFleury.Dtos;
 using AutoMapper;
+using System.Threading.Tasks;
 
 namespace API_GrupoFleury.service
 {
@@ -19,14 +20,15 @@ namespace API_GrupoFleury.service
       _examRepository = examRepository;
       _mapper = mapper;
     }
-    public IEnumerable<ExamsDto> GetAll()
+    public async Task<IEnumerable<ExamsDto>> GetAll()
     {
-      return _mapper.Map<IEnumerable<ExamsDto>>(_examRepository.GetAll().ToList());
+      var result = await _examRepository.GetAll();
+      return _mapper.Map<IEnumerable<ExamsDto>>(result);
     }
-    public ExamNewDto Add(ExamNewDto newExam)
+    public async Task<ExamNewDto> Add(ExamNewDto newExam)
     {
-      _examRepository.add(_mapper.Map<Exam>(newExam));
-      return newExam;
+      var result = await _examRepository.add(_mapper.Map<Exam>(newExam));
+      return _mapper.Map<ExamNewDto>(result);
     }
     public void Update(ExamsDto updateExam)
     {

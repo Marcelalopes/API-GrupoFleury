@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using API_GrupoFleury.models;
 using System;
 using API_GrupoFleury.Repository;
@@ -15,10 +16,10 @@ namespace API_GrupoFleury.service
       _addressRepository = addressRepository;
       _mapper = mapper;
     }
-    public AddressNewDto Add(AddressNewDto newAddress)
+    public async Task<AddressNewDto> Add(AddressNewDto newAddress)
     {
-      _addressRepository.add(_mapper.Map<Address>(newAddress));
-      return newAddress;
+      var result = await _addressRepository.add(_mapper.Map<Address>(newAddress));
+      return _mapper.Map<AddressNewDto>(result);
     }
 
     public bool Delete(Guid id)

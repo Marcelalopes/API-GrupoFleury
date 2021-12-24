@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using API_GrupoFleury.models;
 using API_GrupoFleury.Context;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace API_GrupoFleury.Repository
 {
@@ -15,10 +16,11 @@ namespace API_GrupoFleury.Repository
       _context = context;
     }
 
-    public void add(Address address)
+    public async Task<Address> add(Address address)
     {
-      _context.Address.Add(address);
+      var result = await _context.Address.AddAsync(address);
       _context.SaveChanges();
+      return result.Entity;
     }
 
     public bool Delete(Guid id)

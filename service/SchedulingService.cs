@@ -6,7 +6,7 @@ using System.Linq;
 using API_GrupoFleury.Repository;
 using API_GrupoFleury.Dtos;
 using AutoMapper;
-
+using System.Threading.Tasks;
 
 namespace API_GrupoFleury.service
 {
@@ -19,14 +19,15 @@ namespace API_GrupoFleury.service
       _schedulingRepository = schedulingRepository;
       _mapper = mapper;
     }
-    public SchedulingsDto ListarPorCpf(String cpf)
+    public async Task<SchedulingsDto> ListarPorCpf(String cpf)
     {
-      return _mapper.Map<SchedulingsDto>(_schedulingRepository.ListarPorCpf(cpf));
+      var result = await _schedulingRepository.ListarPorCpf(cpf);
+      return _mapper.Map<SchedulingsDto>(result);
     }
-    public SchedulingNewDto Add(SchedulingNewDto newScheduling)
+    public async Task<SchedulingNewDto> Add(SchedulingNewDto newScheduling)
     {
-      _schedulingRepository.add(_mapper.Map<Scheduling>(newScheduling));
-      return newScheduling;
+      var result = await _schedulingRepository.add(_mapper.Map<Scheduling>(newScheduling));
+      return _mapper.Map<SchedulingNewDto>(result);
     }
     public void Update(SchedulingsDto updateScheduling)
     {
