@@ -12,6 +12,6 @@ namespace API_GrupoFleury.service
     Task<ClientsDto> Search(String cpf);
     Task<ClientNewDto> Add(ClientNewDto client);
     void Update(ClientsDto client);
-    Boolean Desativar(String cpf);
+    void Desativar(ClientsDto client);
   }
 }

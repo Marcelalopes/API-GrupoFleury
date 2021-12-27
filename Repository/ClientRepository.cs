@@ -24,15 +24,10 @@ namespace API_GrupoFleury.Repository
       return result.Entity;
     }
 
-    public Boolean Desativar(String cpf)
+    public void Desativar(Client client)
     {
-      var client = _context.Client.FirstOrDefault(c => c.Cpf == cpf);
-      if (client.isDesable != true)
-      {
-        client.isDesable = true;
-        _context.SaveChanges();
-      }
-      return false;
+      _context.Client.Update(client);
+      _context.SaveChanges();
     }
 
     public async Task<IEnumerable<Client>> GetAll()
@@ -42,8 +37,7 @@ namespace API_GrupoFleury.Repository
 
     public async Task<Client> Search(string cpf)
     {
-      var client = await _context.Client.FirstAsync(c => c.Cpf == cpf);
-      return client;
+      return await _context.Client.FirstAsync(c => c.Cpf == cpf);
     }
 
     public void Update(Client client)

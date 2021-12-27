@@ -17,6 +17,7 @@ namespace API_GrupoFleury.config
 
       CreateMap<SchedulingNewDto, Scheduling>().ReverseMap();
       CreateMap<Scheduling, SchedulingsDto>().ReverseMap();
+      CreateMap<Scheduling, SchedulingUpdateDto>().ReverseMap();
 
       CreateMap<AddressNewDto, Address>().ReverseMap();
       CreateMap<Address, AdressesDto>().ReverseMap();

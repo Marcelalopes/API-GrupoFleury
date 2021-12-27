@@ -9,5 +9,7 @@ namespace API_GrupoFleury.Dtos
     public DateTime BirthDate { get; set; }
     public String Phone { get; set; }
     public String Email { get; set; }
+    public Boolean isDesable { get; set; }
+    public Guid AddressId { get; set; }
   }
 }

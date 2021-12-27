@@ -34,7 +34,7 @@ namespace API_GrupoFleury.controller
     }
 
     [HttpPut("{id}:Guid")]
-    public ActionResult UpdateScheduling([FromBody] SchedulingsDto scheduling, Guid id)
+    public ActionResult UpdateScheduling([FromBody] SchedulingUpdateDto scheduling, Guid id)
     {
       if (id != scheduling.Id)
         return new BadRequestResult();

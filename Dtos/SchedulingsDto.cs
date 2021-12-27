@@ -10,7 +10,7 @@ namespace API_GrupoFleury.Dtos
     public DateTime HorarioI { get; set; }
     public DateTime HorarioF { get; set; }
     public Double ValueTotal { get; set; }
-    public IEnumerable<Guid> ExamIds { get; set; }
+    public Guid ExamId { get; set; }
     public String ClientCpf { get; set; }
   }
 }

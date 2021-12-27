@@ -37,9 +37,9 @@ namespace API_GrupoFleury.service
       _clientRepository.Update(_mapper.Map<Client>(updateClient));
     }
 
-    public Boolean Desativar(String cpf)
+    public void Desativar(ClientsDto desativeClient)
     {
-      return _clientRepository.Desativar(cpf);
+      _clientRepository.Desativar(_mapper.Map<Client>(desativeClient));
     }
 
     public async Task<ClientsDto> Search(string cpf)
@@ -47,5 +47,6 @@ namespace API_GrupoFleury.service
       var result = await _clientRepository.Search(cpf);
       return _mapper.Map<ClientsDto>(result);
     }
+
   }
 }

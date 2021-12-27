@@ -11,6 +11,6 @@ namespace API_GrupoFleury.Repository
     Task<IEnumerable<Client>> GetAll();
     Task<Client> Search(String cpf);
     void Update(Client client);
-    Boolean Desativar(String cpf);
+    void Desativar(Client client);
   }
 }

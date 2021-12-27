@@ -9,6 +9,5 @@ namespace API_GrupoFleury.Dtos
     public String District { get; set; }
     public String ZipCode { get; set; }
     public String City { get; set; }
-    public String ClientCpf { get; set; }
   }
 }

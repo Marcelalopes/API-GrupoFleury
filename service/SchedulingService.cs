@@ -29,7 +29,7 @@ namespace API_GrupoFleury.service
       var result = await _schedulingRepository.add(_mapper.Map<Scheduling>(newScheduling));
       return _mapper.Map<SchedulingNewDto>(result);
     }
-    public void Update(SchedulingsDto updateScheduling)
+    public void Update(SchedulingUpdateDto updateScheduling)
     {
       _schedulingRepository.Update(_mapper.Map<Scheduling>(updateScheduling));
     }

@@ -10,7 +10,7 @@ namespace API_GrupoFleury.service
   {
     Task<SchedulingsDto> ListarPorCpf(String cpf);
     Task<SchedulingNewDto> Add(SchedulingNewDto scheduling);
-    void Update(SchedulingsDto scheduling);
+    void Update(SchedulingUpdateDto scheduling);
     Boolean Delete(Guid id);
   }
 }

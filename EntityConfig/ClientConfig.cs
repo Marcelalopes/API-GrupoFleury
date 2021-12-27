@@ -22,6 +22,7 @@ namespace API_GrupoFleury.EntityConfig
           .HasColumnType("varchar(11)");
       builder.Property(prop => prop.Email)
           .HasColumnType("varchar(30)");
+      builder.HasOne(x => x.Address).WithMany(x => x.Clients).HasForeignKey(x => x.AddressId);
     }
   }
 }

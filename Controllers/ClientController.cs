@@ -26,7 +26,7 @@ namespace API_GrupoFleury.controller
       return new ObjectResult(result);
     }
     [HttpGet("{cpf}")]
-    public async Task<ActionResult<ClientsDto>> SearchClient([FromBody] String cpf)
+    public async Task<ActionResult<ClientsDto>> SearchClient(String cpf)
     {
       var result = await _clientService.Search(cpf);
       return new ObjectResult(result);
@@ -49,11 +49,14 @@ namespace API_GrupoFleury.controller
       return new OkObjectResult(client);
     }
 
-    [HttpDelete("{cpf}:String")]
-    public ActionResult DesativarClient(String Cpf)
+    [HttpPut("desativar/{cpf}:String")]
+    public ActionResult DesativarClient([FromBody] ClientsDto client, String cpf)
     {
-      var result = _clientService.Desativar(Cpf);
-      return result ? new OkResult() : new NotFoundResult();
+      if (cpf != client.Cpf)
+        return new BadRequestResult();
+
+      _clientService.Desativar(client);
+      return new OkObjectResult(client);
     }
   }
 }
