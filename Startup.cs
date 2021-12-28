@@ -16,6 +16,8 @@ using API_GrupoFleury.Context;
 using API_GrupoFleury.service;
 using API_GrupoFleury.Repository;
 using API_GrupoFleury.config;
+using System.IO;
+using System.Reflection;
 
 namespace API_GrupoFleury
 {
@@ -42,6 +44,9 @@ namespace API_GrupoFleury
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_GrupoFleury", Version = "v1" });
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        c.IncludeXmlComments(xmlPath);
       });
       // Injeção de Dependência
       services.AddScoped<IClientService, ClientService>();

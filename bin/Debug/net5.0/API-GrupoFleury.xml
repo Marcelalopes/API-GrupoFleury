@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API-GrupoFleury</name>
+    </assembly>
+    <members>
+        <member name="M:API_GrupoFleury.Controllers.AddressController.AddAddress(API_GrupoFleury.Dtos.AddressNewDto)">
+             <summary> Criar Endereço </summary>
+             <returns> Esse endpoint deve ser usado para criar um novo endereço </returns>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                     {
+                         "street": "Rua 7 de Setembro",
+                         "number": 12,
+                         "district": "Centro",
+                         "zipCode": "64255000",
+                         "city": "Pedro II"
+                      }
+            
+             </remarks>
+             <response code="200"> Quando estiver OK </response>
+             <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.Controllers.AddressController.UpdateAddress(API_GrupoFleury.Dtos.AdressesDto,System.Guid)">
+             <summary> Atualizar um endereço </summary>
+             <returns> Esse endpoint deve ser usado quando for preciso atualizar um endereço </returns>
+             <param name="id"> Esse Id deve ser o do Endereço que deseja altualizar </param>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                     {
+                         "id":"3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                         "street": "Rua 7 de Setembro",
+                         "number": 12,
+                         "district": "Centro",
+                         "zipCode": "64255000",
+                         "city": "Pedro II"
+                      }
+            
+             </remarks>
+             <response code="200"> Quando estiver OK </response>
+             <response code="204"> Quando não encontrar a Categoria </response>
+             <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.Controllers.AddressController.DeleteAddress(System.Guid)">
+            <summary> Deletar um endereço </summary>
+            <returns> Esse endpoint deve ser usado quando for preciso deletar um endereço pelo seu Id </returns>
+            <param name="id"> Esse Id deve ser o do endereço que deseja deleta </param>
+            <response code="200"> Quando estiver OK </response>
+            <response code="204"> Quando estiver OK </response>
+            <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ClientController.GetAllClient">
+            <summary>Listar Clientes</summary>
+            <returns>Este endpoint deve ser usando para listar todos os Clientes cadastrados</returns>
+            <response code="200">Quando estiver OK</response>
+            <response code="400">Quando tiver com erro</response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ClientController.SearchClient(System.String)">
+            <summary>Listar Clientes por CPF</summary>
+            <returns>Este endpoint deve ser usando para listar um cliente pelo seu CPF</returns>
+            <response code="200">Quando estiver OK</response>
+            <response code="400">Quando tiver com erro</response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ClientController.AddClient(API_GrupoFleury.Dtos.ClientNewDto)">
+             <summary>Cadastrar Clientes</summary>
+             <returns>Este endpoint deve ser usando para cadastrar clientes</returns>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                          {
+                             "cpf":"06568386290",
+                             "name":"Marcela dos Santos Lopes",
+                             "birthDate":"2021-12-28T13:55:50.061Z",
+                             "phone":"86987435689",
+                             "email":"marcela@gmail.com",
+                             "isDesable":false,
+                             "addressId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                          }
+            
+             </remarks>
+             <response code="200">Quando estiver OK</response>
+             <response code="400">Quando tiver com erro</response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ClientController.UpdateClient(API_GrupoFleury.Dtos.ClientsDto,System.String)">
+             <summary> Atualizar os dados de um cliente </summary>
+             <returns> Esse endpoint deve ser usado quando for preciso atualizar os dados de um cliente </returns>
+             <param name="cpf"> Esse cpf deve ser o do Cliente que deseja altualizar </param>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                          {
+                             "cpf":"06568386290",
+                             "name":"Marcela dos Santos Lopes",
+                             "birthDate":"2021-12-28T13:55:50.061Z",
+                             "phone":"86987435689",
+                             "email":"marcela@gmail.com",
+                             "isDesable":false,
+                             "addressId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                          }
+            
+             </remarks>
+             <response code="200"> Quando estiver OK </response>
+             <response code="204"> Quando não encontrar a Categoria </response>
+             <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ClientController.DesativarClient(API_GrupoFleury.Dtos.ClientsDto,System.String)">
+             <summary> Desativar um cliente </summary>
+             <returns> Esse endpoint deve ser usado quando for preciso desativar um cliente </returns>
+             <param name="cpf"> Esse cpf deve ser o do Cliente que deseja desativar </param>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                          {
+                             "cpf":"06568386290",
+                             "name":"Marcela dos Santos Lopes",
+                             "birthDate":"2021-12-28T13:55:50.061Z",
+                             "phone":"86987435689",
+                             "email":"marcela@gmail.com",
+                             "isDesable":true,
+                             "addressId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                          }
+            
+             </remarks>
+             <response code="200"> Quando estiver OK </response>
+             <response code="204"> Quando não encontrar a Categoria </response>
+             <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ExamController.GetAllExams">
+            <summary>Listar todos os Exames</summary>
+            <returns> Esse endpoint deve ser usado quando for preciso listar todos os exames </returns>
+            <response code="200"> Quando estiver OK </response>
+            <response code="204"> Quando não encontrar a Categoria </response>
+            <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ExamController.AddExam(API_GrupoFleury.Dtos.ExamNewDto)">
+             <summary>Cadastrar um Exame</summary>
+             <returns> Esse endpoint deve ser usado quando for preciso cadastrar um exame </returns>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                          {
+                             "name":"Hemograma",
+                             "price":59.99,
+                             "duration":30
+                          }
+            
+             </remarks>
+             <response code="200"> Quando estiver OK </response>
+             <response code="204"> Quando não encontrar a Categoria </response>
+             <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ExamController.UpdateExam(API_GrupoFleury.Dtos.ExamsDto,System.Guid)">
+             <summary> Atualizar os dados de um exame </summary>
+             <returns> Esse endpoint deve ser usado quando for preciso atualizar os dados de um exame </returns>
+             <param name="id"> Esse id deve ser o do exame que deseja altualizar </param>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                          {
+                             "id":"3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                             "name":"Hemograma",
+                             "price":59.99,
+                             "duration":30
+                          }
+            
+             </remarks>
+             <response code="200"> Quando estiver OK </response>
+             <response code="204"> Quando não encontrar a Categoria </response>
+             <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.ExamController.DeleteExam(System.Guid)">
+            <summary> Deletar um Exame</summary>
+            <returns> Esse endpoint deve ser usado quando for preciso deletar um exame pelo seu Id</returns>
+            <param name = "id" > Esse Id deve ser o do exame que deseja deleta</param>
+            <response code = "200" > Quando estiver OK </response>
+            <response code = "204" > Quando estiver OK </response>
+            <response code = "404" > Quando estiver com ERROR</response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.SchedulingController.ListarAgendamento(System.String)">
+            <summary> Listar um agendamento por cpf </summary>
+            <returns> Esse endpoint deve ser usado quando for preciso listar um agendamento pelo cpf do cliente</returns>
+            <param name="cpf"> Esse cpf deve ser o do client do agendamento que deseja listar </param>
+            <response code="200"> Quando estiver OK </response>
+            <response code="204"> Quando não encontrar a Categoria </response>
+            <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.SchedulingController.AddScheduling(API_GrupoFleury.Dtos.SchedulingNewDto)">
+             <summary>Criar um agendamento </summary>
+             <returns> Esse endpoint deve ser usado quando for preciso criar um agendamento </returns>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                          {
+                             "valueTotal":90,
+                             "date":"2021-12-28T14:23:56.959Z",
+                             "horarioI":"2021-12-28T14:23:56.959Z",
+                             "horarioF":"2021-12-28T14:23:56.959Z",
+                             "examId":"3fa85f64-5717-4562-b3fc-2c963f66aff4",
+                             "clientCpf":"09876898760"
+                          }
+            
+             </remarks>
+             <response code="200"> Quando estiver OK </response>
+             <response code="204"> Quando não encontrar a Categoria </response>
+             <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.SchedulingController.UpdateScheduling(API_GrupoFleury.Dtos.SchedulingUpdateDto,System.Guid)">
+             <summary> Atualizar os dados de um agendamento </summary>
+             <returns> Esse endpoint deve ser usado quando for preciso atualizar os dados de um agendamento </returns>
+             <param name="id"> Esse id deve ser o do agendamento que deseja altualizar </param>
+             <remarks>
+                 Exemplo RequestBody:
+            
+                          {
+                             "id":"3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                             "date":"2021-12-28T14:23:56.959Z",
+                             "horarioI":"2021-12-28T14:23:56.959Z",
+                             "horarioF":"2021-12-28T14:23:56.959Z",
+                             "examId":"3fa85f64-5717-4562-b3fc-2c963f66aff4",
+                             "clientCpf":"09876898760"
+                          }
+            
+             </remarks>
+             <response code="200"> Quando estiver OK </response>
+             <response code="204"> Quando não encontrar a Categoria </response>
+             <response code="404"> Quando estiver com ERROR </response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.SchedulingController.DeleteScheduling(System.Guid)">
+            <summary> Deletar um Agendamento</summary>
+            <returns> Esse endpoint deve ser usado quando for preciso deletar um agendamento pelo seu Id</returns>
+            <param name = "id" > Esse Id deve ser o do agendamento que deseja deletar</param>
+            <response code = "200" > Quando estiver OK </response>
+            <response code = "204" > Quando estiver OK </response>
+            <response code = "404" > Quando estiver com ERROR</response>
+        </member>
+    </members>
+</doc>
