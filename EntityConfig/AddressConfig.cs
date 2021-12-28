@@ -19,7 +19,7 @@ namespace API_GrupoFleury.EntityConfig
         .HasColumnType("int")
         .IsRequired();
       builder.Property(prop => prop.District)
-        .HasColumnType("varchar(15)")
+        .HasColumnType("varchar(16)")
         .IsRequired();
       builder.Property(prop => prop.ZipCode)
         .HasColumnType("varchar(8)")
