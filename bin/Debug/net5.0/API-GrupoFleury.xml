@@ -4,6 +4,12 @@
         <name>API-GrupoFleury</name>
     </assembly>
     <members>
+        <member name="M:API_GrupoFleury.Controllers.AddressController.GetAllAddress">
+            <summary>Listar Endereços</summary>
+            <returns>Este endpoint deve ser usando para listar todos osendereços</returns>
+            <response code="200">Quando estiver OK</response>
+            <response code="400">Quando tiver com erro</response>
+        </member>
         <member name="M:API_GrupoFleury.Controllers.AddressController.AddAddress(API_GrupoFleury.Dtos.AddressNewDto)">
              <summary> Criar Endereço </summary>
              <returns> Esse endpoint deve ser usado para criar um novo endereço </returns>
@@ -177,6 +183,12 @@
             <response code = "200" > Quando estiver OK </response>
             <response code = "204" > Quando estiver OK </response>
             <response code = "404" > Quando estiver com ERROR</response>
+        </member>
+        <member name="M:API_GrupoFleury.controller.SchedulingController.GetAllScheduling">
+            <summary>Listar Agendamentos</summary>
+            <returns>Este endpoint deve ser usando para listar todos os agendamentos marcados</returns>
+            <response code="200">Quando estiver OK</response>
+            <response code="400">Quando tiver com erro</response>
         </member>
         <member name="M:API_GrupoFleury.controller.SchedulingController.ListarAgendamento(System.String)">
             <summary> Listar um agendamento por cpf </summary>

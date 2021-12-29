@@ -4,6 +4,7 @@ using System;
 using API_GrupoFleury.Repository;
 using API_GrupoFleury.Dtos;
 using AutoMapper;
+using System.Collections.Generic;
 
 namespace API_GrupoFleury.service
 {
@@ -15,6 +16,11 @@ namespace API_GrupoFleury.service
     {
       _addressRepository = addressRepository;
       _mapper = mapper;
+    }
+    public async Task<IEnumerable<AdressesDto>> GetAll()
+    {
+      var result = await _addressRepository.GetAll();
+      return _mapper.Map<IEnumerable<AdressesDto>>(result);
     }
     public async Task<AddressNewDto> Add(AddressNewDto newAddress)
     {

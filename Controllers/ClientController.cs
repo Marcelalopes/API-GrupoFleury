@@ -67,6 +67,7 @@ namespace API_GrupoFleury.controller
 
     /// <summary> Atualizar os dados de um cliente </summary>
     /// <returns> Esse endpoint deve ser usado quando for preciso atualizar os dados de um cliente </returns>
+    /// <param name="client"></param>
     /// <param name="cpf"> Esse cpf deve ser o do Cliente que deseja altualizar </param>
     /// <remarks>
     ///     Exemplo RequestBody:
@@ -97,6 +98,7 @@ namespace API_GrupoFleury.controller
 
     /// <summary> Desativar um cliente </summary>
     /// <returns> Esse endpoint deve ser usado quando for preciso desativar um cliente </returns>
+    /// <param name="client"></param>
     /// <param name="cpf"> Esse cpf deve ser o do Cliente que deseja desativar </param>
     /// <remarks>
     ///     Exemplo RequestBody:

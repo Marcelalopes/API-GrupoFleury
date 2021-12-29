@@ -18,6 +18,17 @@ namespace API_GrupoFleury.Controllers
     {
       _addressService = addressService;
     }
+
+    /// <summary>Listar Endereços</summary>
+    /// <returns>Este endpoint deve ser usando para listar todos osendereços</returns>
+    /// <response code="200">Quando estiver OK</response>
+    /// <response code="400">Quando tiver com erro</response>
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<AdressesDto>>> GetAllAddress()
+    {
+      var result = await _addressService.GetAll();
+      return new ObjectResult(result);
+    }
     /// <summary> Criar Endereço </summary>
     /// <returns> Esse endpoint deve ser usado para criar um novo endereço </returns>
     /// <remarks>
@@ -44,6 +55,7 @@ namespace API_GrupoFleury.Controllers
 
     /// <summary> Atualizar um endereço </summary>
     /// <returns> Esse endpoint deve ser usado quando for preciso atualizar um endereço </returns>
+    /// <param name="address"></param>
     /// <param name="id"> Esse Id deve ser o do Endereço que deseja altualizar </param>
     /// <remarks>
     ///     Exemplo RequestBody:

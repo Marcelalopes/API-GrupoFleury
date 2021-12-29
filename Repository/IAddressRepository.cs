@@ -7,6 +7,7 @@ namespace API_GrupoFleury.Repository
 {
   public interface IAddressRepository
   {
+    Task<IEnumerable<Address>> GetAll();
     Task<Address> add(Address address);
     void Update(Address address);
     Boolean Delete(Guid id);

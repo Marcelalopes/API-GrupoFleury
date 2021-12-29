@@ -19,6 +19,11 @@ namespace API_GrupoFleury.service
       _schedulingRepository = schedulingRepository;
       _mapper = mapper;
     }
+    public async Task<IEnumerable<SchedulingsDto>> GetAll()
+    {
+      var result = await _schedulingRepository.GetAll();
+      return _mapper.Map<IEnumerable<SchedulingsDto>>(result);
+    }
     public async Task<SchedulingsDto> ListarPorCpf(String cpf)
     {
       var result = await _schedulingRepository.ListarPorCpf(cpf);

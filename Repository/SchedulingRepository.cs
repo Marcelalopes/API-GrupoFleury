@@ -15,7 +15,10 @@ namespace API_GrupoFleury.Repository
     {
       _context = context;
     }
-
+    public async Task<IEnumerable<Scheduling>> GetAll()
+    {
+      return await _context.Scheduling.ToListAsync();
+    }
     public async Task<Scheduling> add(Scheduling scheduling)
     {
       var result = await _context.Scheduling.AddAsync(scheduling);
@@ -43,7 +46,11 @@ namespace API_GrupoFleury.Repository
 
     public void Update(Scheduling scheduling)
     {
-      _context.Scheduling.Update(scheduling);
+      var result = _context.Scheduling.FirstOrDefault(x => x.Id == scheduling.Id);
+      result.Date = scheduling.Date;
+      result.HorarioI = scheduling.HorarioI;
+      result.HorarioF = scheduling.HorarioF;
+      _context.Scheduling.Update(result);
       _context.SaveChanges();
     }
   }

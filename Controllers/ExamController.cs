@@ -56,6 +56,7 @@ namespace API_GrupoFleury.controller
 
     /// <summary> Atualizar os dados de um exame </summary>
     /// <returns> Esse endpoint deve ser usado quando for preciso atualizar os dados de um exame </returns>
+    /// <param name="exam"></param>
     /// <param name="id"> Esse id deve ser o do exame que deseja altualizar </param>
     /// <remarks>
     ///     Exemplo RequestBody:

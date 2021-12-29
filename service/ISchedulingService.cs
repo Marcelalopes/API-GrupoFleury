@@ -8,6 +8,7 @@ namespace API_GrupoFleury.service
 {
   public interface ISchedulingService
   {
+    Task<IEnumerable<SchedulingsDto>> GetAll();
     Task<SchedulingsDto> ListarPorCpf(String cpf);
     Task<SchedulingNewDto> Add(SchedulingNewDto scheduling);
     void Update(SchedulingUpdateDto scheduling);

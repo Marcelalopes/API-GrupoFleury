@@ -4,6 +4,7 @@ using API_GrupoFleury.models;
 using API_GrupoFleury.Context;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_GrupoFleury.Repository
 {
@@ -14,6 +15,10 @@ namespace API_GrupoFleury.Repository
     public AddressRepository(AppDbContext context)
     {
       _context = context;
+    }
+    public async Task<IEnumerable<Address>> GetAll()
+    {
+      return await _context.Address.ToListAsync();
     }
 
     public async Task<Address> add(Address address)
