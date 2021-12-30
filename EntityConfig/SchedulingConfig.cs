@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System;
 using API_GrupoFleury.models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Text.Json;
 // using System.Data.Entity.ModelConfiguration;
 
 namespace API_GrupoFleury.EntityConfig
@@ -34,7 +37,12 @@ namespace API_GrupoFleury.EntityConfig
           .IsRequired();
       /* builder.HasMany(s => s.Exams)
           .WithMany(e => e.Schedulings)
-          .Map(x => x.toTable("ExamScheduling").MapLeftKey("SchedulingId").MapRightKey("ExamId")); */    
+          .Map(x => x.toTable("ExamScheduling").MapLeftKey("SchedulingId").MapRightKey("ExamId")); */
+      var examsIds = new ValueConverter<List<Guid>, string>(
+            x => JsonSerializer.Serialize(x, x.GetType(), null),
+            x => JsonSerializer.Deserialize<List<Guid>>(x, null));
+      builder.Property(x => x.ExamIds).HasConversion(examsIds);
+      builder.HasMany(x => x.Exams).WithMany(x => x.Schedulings);
     }
   }
 }

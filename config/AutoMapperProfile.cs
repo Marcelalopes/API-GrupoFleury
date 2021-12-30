@@ -14,6 +14,7 @@ namespace API_GrupoFleury.config
 
       CreateMap<ExamNewDto, Exam>().ReverseMap();
       CreateMap<Exam, ExamsDto>().ReverseMap();
+      CreateMap<Exam, ExamUpdateDto>().ReverseMap();
 
       CreateMap<SchedulingNewDto, Scheduling>().ReverseMap();
       CreateMap<Scheduling, SchedulingsDto>().ReverseMap();

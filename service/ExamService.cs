@@ -30,7 +30,7 @@ namespace API_GrupoFleury.service
       var result = await _examRepository.add(_mapper.Map<Exam>(newExam));
       return _mapper.Map<ExamNewDto>(result);
     }
-    public void Update(ExamsDto updateExam)
+    public void Update(ExamUpdateDto updateExam)
     {
       _examRepository.Update(_mapper.Map<Exam>(updateExam));
     }

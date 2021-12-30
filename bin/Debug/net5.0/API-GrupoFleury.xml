@@ -31,6 +31,7 @@
         <member name="M:API_GrupoFleury.Controllers.AddressController.UpdateAddress(API_GrupoFleury.Dtos.AdressesDto,System.Guid)">
              <summary> Atualizar um endereço </summary>
              <returns> Esse endpoint deve ser usado quando for preciso atualizar um endereço </returns>
+             <param name="address"></param>
              <param name="id"> Esse Id deve ser o do Endereço que deseja altualizar </param>
              <remarks>
                  Exemplo RequestBody:
@@ -92,6 +93,7 @@
         <member name="M:API_GrupoFleury.controller.ClientController.UpdateClient(API_GrupoFleury.Dtos.ClientsDto,System.String)">
              <summary> Atualizar os dados de um cliente </summary>
              <returns> Esse endpoint deve ser usado quando for preciso atualizar os dados de um cliente </returns>
+             <param name="client"></param>
              <param name="cpf"> Esse cpf deve ser o do Cliente que deseja altualizar </param>
              <remarks>
                  Exemplo RequestBody:
@@ -114,6 +116,7 @@
         <member name="M:API_GrupoFleury.controller.ClientController.DesativarClient(API_GrupoFleury.Dtos.ClientsDto,System.String)">
              <summary> Desativar um cliente </summary>
              <returns> Esse endpoint deve ser usado quando for preciso desativar um cliente </returns>
+             <param name="client"></param>
              <param name="cpf"> Esse cpf deve ser o do Cliente que deseja desativar </param>
              <remarks>
                  Exemplo RequestBody:
@@ -157,9 +160,10 @@
              <response code="204"> Quando não encontrar a Categoria </response>
              <response code="404"> Quando estiver com ERROR </response>
         </member>
-        <member name="M:API_GrupoFleury.controller.ExamController.UpdateExam(API_GrupoFleury.Dtos.ExamsDto,System.Guid)">
+        <member name="M:API_GrupoFleury.controller.ExamController.UpdateExam(API_GrupoFleury.Dtos.ExamUpdateDto,System.Guid)">
              <summary> Atualizar os dados de um exame </summary>
              <returns> Esse endpoint deve ser usado quando for preciso atualizar os dados de um exame </returns>
+             <param name="exam"></param>
              <param name="id"> Esse id deve ser o do exame que deseja altualizar </param>
              <remarks>
                  Exemplo RequestBody:
@@ -221,6 +225,7 @@
         <member name="M:API_GrupoFleury.controller.SchedulingController.UpdateScheduling(API_GrupoFleury.Dtos.SchedulingUpdateDto,System.Guid)">
              <summary> Atualizar os dados de um agendamento </summary>
              <returns> Esse endpoint deve ser usado quando for preciso atualizar os dados de um agendamento </returns>
+             <param name="scheduling"></param>
              <param name="id"> Esse id deve ser o do agendamento que deseja altualizar </param>
              <remarks>
                  Exemplo RequestBody:

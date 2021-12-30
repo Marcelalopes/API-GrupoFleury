@@ -10,7 +10,7 @@ namespace API_GrupoFleury.service
   {
     Task<IEnumerable<ExamsDto>> GetAll();
     Task<ExamNewDto> Add(ExamNewDto exam);
-    void Update(ExamsDto exam);
+    void Update(ExamUpdateDto exam);
     Boolean Delete(Guid id);
   }
 }

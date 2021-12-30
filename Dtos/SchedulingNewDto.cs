@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using API_GrupoFleury.models;
 
 namespace API_GrupoFleury.Dtos
 {
@@ -19,7 +20,7 @@ namespace API_GrupoFleury.Dtos
     public Double ValueTotal { get; set; }
 
     [Required(ErrorMessage = "Campo Obrigatório!")]
-    public Guid ExamId { get; set; }
+    public List<Guid> ExamIds { get; set; }
 
     [Required(ErrorMessage = "Campo Obrigatório!")]
     [MaxLength(length: 11, ErrorMessage = "O tamanho máximo é 11")]

@@ -15,7 +15,7 @@ namespace API_GrupoFleury.models
     public DateTime HorarioI { get; set; }
     public DateTime HorarioF { get; set; }
     public Double ValueTotal { get; set; }
-    public Guid ExamId { get; set; }
+    public List<Guid> ExamIds { get; set; }
     public List<Exam> Exams { get; set; }
     public Client Client { get; set; }
     public String ClientCpf { get; set; }

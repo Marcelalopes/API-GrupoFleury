@@ -73,7 +73,7 @@ namespace API_GrupoFleury.controller
     /// <response code="204"> Quando não encontrar a Categoria </response>
     /// <response code="404"> Quando estiver com ERROR </response>
     [HttpPut("{id}:Guid")]
-    public ActionResult UpdateExam([FromBody] ExamsDto exam, Guid id)
+    public ActionResult UpdateExam([FromBody] ExamUpdateDto exam, Guid id)
     {
       if (id != exam.Id)
         return new BadRequestResult();
