@@ -5,6 +5,7 @@ using API_GrupoFleury.Context;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace API_GrupoFleury.Repository
 {
@@ -36,9 +37,9 @@ namespace API_GrupoFleury.Repository
       return true;
     }
 
-    public async Task<IEnumerable<Exam>> GetAll()
+    public async Task<IPagedList<Exam>> GetAll(int pageSize, int pageNumber)
     {
-      return await _context.Exam.ToListAsync();
+      return await _context.Exam.ToPagedListAsync(pageSize, pageNumber);
     }
 
     public void Update(Exam exam)

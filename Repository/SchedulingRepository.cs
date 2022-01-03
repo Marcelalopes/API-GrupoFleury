@@ -5,6 +5,7 @@ using API_GrupoFleury.Context;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace API_GrupoFleury.Repository
 {
@@ -15,9 +16,9 @@ namespace API_GrupoFleury.Repository
     {
       _context = context;
     }
-    public async Task<IEnumerable<Scheduling>> GetAll()
+    public async Task<IPagedList<Scheduling>> GetAll(int pageSize, int pageNumber)
     {
-      return await _context.Scheduling.ToListAsync();
+      return await _context.Scheduling.ToPagedListAsync(pageSize, pageNumber);
     }
     public async Task<Scheduling> add(Scheduling scheduling)
     {

@@ -24,9 +24,12 @@ namespace API_GrupoFleury.controller
     /// <response code="200">Quando estiver OK</response>
     /// <response code="400">Quando tiver com erro</response>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<SchedulingsDto>>> GetAllScheduling()
+    public async Task<ActionResult> GetAllScheduling(
+      [FromQuery] int pageNumber = 1,
+      [FromQuery] int pageSize = 5
+    )
     {
-      var result = await _schedulingService.GetAll();
+      var result = await _schedulingService.GetAll(pageNumber, pageSize);
       return new ObjectResult(result);
     }
 

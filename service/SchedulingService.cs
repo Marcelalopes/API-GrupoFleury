@@ -7,6 +7,7 @@ using API_GrupoFleury.Repository;
 using API_GrupoFleury.Dtos;
 using AutoMapper;
 using System.Threading.Tasks;
+using System.Dynamic;
 
 namespace API_GrupoFleury.service
 {
@@ -19,10 +20,18 @@ namespace API_GrupoFleury.service
       _schedulingRepository = schedulingRepository;
       _mapper = mapper;
     }
-    public async Task<IEnumerable<SchedulingsDto>> GetAll()
+    public async Task<dynamic> GetAll(int pageNumber, int pageSize)
     {
-      var result = await _schedulingRepository.GetAll();
-      return _mapper.Map<IEnumerable<SchedulingsDto>>(result);
+      var result = await _schedulingRepository.GetAll(pageNumber, pageSize);
+      dynamic response = new ExpandoObject();
+      response.currentPage = pageNumber;
+      response.pageSize = pageSize;
+      response.totalPages = Math.Ceiling((double)result.TotalItemCount / pageSize);
+      response.totalItems = result.TotalItemCount;
+      response.data = _mapper.Map<IEnumerable<SchedulingsDto>>(result);
+
+
+      return response;
     }
     public async Task<SchedulingsDto> ListarPorCpf(String cpf)
     {

@@ -24,9 +24,12 @@ namespace API_GrupoFleury.Controllers
     /// <response code="200">Quando estiver OK</response>
     /// <response code="400">Quando tiver com erro</response>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<AdressesDto>>> GetAllAddress()
+    public async Task<ActionResult> GetAllAddress(
+      [FromQuery] int pageNumber = 1,
+      [FromQuery] int pageSize = 5
+    )
     {
-      var result = await _addressService.GetAll();
+      var result = await _addressService.GetAll(pageSize, pageNumber);
       return new ObjectResult(result);
     }
     /// <summary> Criar Endereço </summary>

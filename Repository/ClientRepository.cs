@@ -5,6 +5,7 @@ using API_GrupoFleury.Context;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace API_GrupoFleury.Repository
 {
@@ -30,9 +31,9 @@ namespace API_GrupoFleury.Repository
       _context.SaveChanges();
     }
 
-    public async Task<IEnumerable<Client>> GetAll()
+    public async Task<IPagedList<Client>> GetAll(int pageSize, int pageNumber)
     {
-      return await _context.Client.ToListAsync();
+      return await _context.Client.ToPagedListAsync(pageNumber, pageSize);
     }
 
     public async Task<Client> Search(string cpf)

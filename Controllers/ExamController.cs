@@ -26,9 +26,12 @@ namespace API_GrupoFleury.controller
     /// <response code="204"> Quando não encontrar a Categoria </response>
     /// <response code="404"> Quando estiver com ERROR </response>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ExamsDto>>> GetAllExams()
+    public async Task<ActionResult> GetAllExams(
+      [FromQuery] int pageNumber = 1,
+      [FromQuery] int pageSize = 5
+    )
     {
-      var result = await _examService.GetAll();
+      var result = await _examService.GetAll(pageNumber, pageSize);
       return new ObjectResult(result);
     }
 

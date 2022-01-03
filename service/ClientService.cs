@@ -7,6 +7,7 @@ using System.Linq;
 using API_GrupoFleury.Repository;
 using AutoMapper;
 using System.Threading.Tasks;
+using System.Dynamic;
 
 namespace API_GrupoFleury.service
 {
@@ -20,10 +21,18 @@ namespace API_GrupoFleury.service
       _clientRepository = clientRepository;
       _mapper = mapper;
     }
-    public async Task<IEnumerable<ClientsDto>> GetAll()
+    public async Task<dynamic> GetAll(int pageSize, int pageNumber)
     {
-      var result = await _clientRepository.GetAll();
-      return _mapper.Map<IEnumerable<ClientsDto>>(result);
+      var result = await _clientRepository.GetAll(pageSize, pageNumber);
+      dynamic response = new ExpandoObject();
+      response.currentPage = pageNumber;
+      response.pageSize = pageSize;
+      response.totalPages = Math.Ceiling((double)result.TotalItemCount / pageSize);
+      response.totalItems = result.TotalItemCount;
+      response.data = _mapper.Map<IEnumerable<ClientsDto>>(result);
+
+
+      return response;
     }
 
     public async Task<ClientNewDto> Add(ClientNewDto newClient)

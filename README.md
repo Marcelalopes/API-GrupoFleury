@@ -11,7 +11,7 @@ selecionar um exame e informar data e hora desejado.
 - Deverá haver um endpoint para atualização de um cliente :heavy_check_mark:
 - Deverá haver um endpoint para desativar um cliente :heavy_check_mark:
 - Deverá haver um endpoint para busca de um cliente baseado no seu cpf ou Nome :heavy_check_mark:
-- Deverá haver um endpoint para listagem de todos os clientes cadastrados com paginação 
+- Deverá haver um endpoint para listagem de todos os clientes cadastrados com paginação :heavy_check_mark:
 
 - Deverá haver um endpoint para listagem dos exames disponíveis para agendamento, exibindo apenas nome do exame e id :heavy_check_mark:
 - Deverá haver um endpoint para listagem dos agendamentos de um cliente por cpf, deverá conter o valor total (soma dos valores dos exames selecionados para o agendamento) :heavy_check_mark:

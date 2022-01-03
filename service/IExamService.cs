@@ -8,7 +8,7 @@ namespace API_GrupoFleury.service
 {
   public interface IExamService
   {
-    Task<IEnumerable<ExamsDto>> GetAll();
+    Task<dynamic> GetAll(int pageNumber, int pageSize);
     Task<ExamNewDto> Add(ExamNewDto exam);
     void Update(ExamUpdateDto exam);
     Boolean Delete(Guid id);

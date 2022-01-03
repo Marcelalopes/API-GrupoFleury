@@ -8,7 +8,7 @@ namespace API_GrupoFleury.service
 {
   public interface IClientService
   {
-    Task<IEnumerable<ClientsDto>> GetAll();
+    Task<dynamic> GetAll(int pageSize, int pageNumber);
     Task<ClientsDto> Search(String cpf);
     Task<ClientNewDto> Add(ClientNewDto client);
     void Update(ClientsDto client);
