@@ -6,6 +6,7 @@ using API_GrupoFleury.Dtos;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Dynamic;
+using API_GrupoFleury.Enum;
 
 namespace API_GrupoFleury.service
 {
@@ -18,15 +19,31 @@ namespace API_GrupoFleury.service
       _addressRepository = addressRepository;
       _mapper = mapper;
     }
-    public async Task<dynamic> GetAll(int pageSize, int pageNumber)
+    public async Task<dynamic> GetAll(
+      int pageSize,
+      int pageNumber,
+      string search,
+      OrderByTypeEnum orderByType,
+      OrderByColumnAddressEnum orderByColumn
+    )
     {
-      var result = await _addressRepository.GetAll(pageSize, pageNumber);
+      var result = await _addressRepository.GetAll(
+        pageSize,
+        pageNumber,
+        search,
+        orderByType,
+        orderByColumn
+      );
 
       dynamic response = new ExpandoObject();
       response.currentPage = pageNumber;
       response.pageSize = pageSize;
       response.totalPages = Math.Ceiling((double)result.TotalItemCount / pageSize);
       response.totalItems = result.TotalItemCount;
+      response.search = search;
+      response.orderByType = orderByType;
+      response.orderByColumn = orderByColumn;
+
       response.data = _mapper.Map<IEnumerable<AdressesDto>>(result);
 
       return response;

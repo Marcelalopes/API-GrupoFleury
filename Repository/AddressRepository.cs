@@ -1,11 +1,11 @@
 using System;
-using System.Collections.Generic;
 using API_GrupoFleury.models;
 using API_GrupoFleury.Context;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using API_GrupoFleury.Enum;
+using System.Linq.Dynamic.Core;
 
 namespace API_GrupoFleury.Repository
 {
@@ -17,9 +17,21 @@ namespace API_GrupoFleury.Repository
     {
       _context = context;
     }
-    public async Task<IPagedList<Address>> GetAll(int pageSize, int pageNumber)
+    public async Task<IPagedList<Address>> GetAll(
+      int pageSize,
+      int pageNumber,
+      string search,
+      OrderByTypeEnum orderByType,
+      OrderByColumnAddressEnum orderByColumn
+    )
     {
-      return await _context.Address.ToPagedListAsync(pageNumber, pageSize);
+      return await _context
+      .Address
+      .OrderBy(
+        $"{orderByColumn.ToString()} { orderByType.ToString()}"
+      )
+      .Where(c => c.City.Contains(search))
+      .ToPagedListAsync(pageNumber, pageSize);
     }
 
     public async Task<Address> add(Address address)

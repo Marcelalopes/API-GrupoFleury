@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using API_GrupoFleury.Dtos;
+using API_GrupoFleury.Enum;
 
 namespace API_GrupoFleury.Controllers
 {
@@ -26,10 +27,19 @@ namespace API_GrupoFleury.Controllers
     [HttpGet]
     public async Task<ActionResult> GetAllAddress(
       [FromQuery] int pageNumber = 1,
-      [FromQuery] int pageSize = 5
+      [FromQuery] int pageSize = 5,
+      [FromQuery] string search = "",
+      [FromQuery] OrderByTypeEnum orderByType = OrderByTypeEnum.ASC,
+      [FromQuery] OrderByColumnAddressEnum orderByColumn = OrderByColumnAddressEnum.City
     )
     {
-      var result = await _addressService.GetAll(pageSize, pageNumber);
+      var result = await _addressService.GetAll(
+        pageSize,
+        pageNumber,
+        search,
+        orderByType,
+        orderByColumn
+      );
       return new ObjectResult(result);
     }
     /// <summary> Criar Endereço </summary>

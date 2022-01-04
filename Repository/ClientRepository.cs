@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using API_GrupoFleury.Enum;
+using System.Linq.Dynamic.Core;
 
 namespace API_GrupoFleury.Repository
 {
@@ -31,9 +33,11 @@ namespace API_GrupoFleury.Repository
       _context.SaveChanges();
     }
 
-    public async Task<IPagedList<Client>> GetAll(int pageSize, int pageNumber)
+    public async Task<IPagedList<Client>> GetAll(int pageSize, int pageNumber, string search, OrderByTypeEnum orderByType, OrderByColumnClientEnum orderByColumn)
     {
-      return await _context.Client.ToPagedListAsync(pageNumber, pageSize);
+      return await _context.Client
+      .OrderBy($"{orderByColumn.ToString()} {orderByType.ToString()}")
+      .Where(c => c.Name.Contains(search)).ToPagedListAsync(pageNumber, pageSize);
     }
 
     public async Task<Client> Search(string cpf)

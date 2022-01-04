@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using API_GrupoFleury.Dtos;
 using System.Threading.Tasks;
+using API_GrupoFleury.Enum;
 
 namespace API_GrupoFleury.controller
 {
@@ -28,10 +29,19 @@ namespace API_GrupoFleury.controller
     [HttpGet]
     public async Task<ActionResult> GetAllExams(
       [FromQuery] int pageNumber = 1,
-      [FromQuery] int pageSize = 5
+      [FromQuery] int pageSize = 5,
+      [FromQuery] string search = "",
+      [FromQuery] OrderByTypeEnum orderByType = OrderByTypeEnum.ASC,
+      [FromQuery] OrderByColumnExamEnum orderByColumn = OrderByColumnExamEnum.Name
     )
     {
-      var result = await _examService.GetAll(pageNumber, pageSize);
+      var result = await _examService.GetAll(
+        pageNumber,
+        pageSize,
+        search,
+        orderByType,
+        orderByColumn
+      );
       return new ObjectResult(result);
     }
 

@@ -1,11 +1,11 @@
 using System;
-using System.Collections.Generic;
 using API_GrupoFleury.models;
 using API_GrupoFleury.Context;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using API_GrupoFleury.Enum;
+using System.Linq.Dynamic.Core;
 
 namespace API_GrupoFleury.Repository
 {
@@ -37,9 +37,17 @@ namespace API_GrupoFleury.Repository
       return true;
     }
 
-    public async Task<IPagedList<Exam>> GetAll(int pageSize, int pageNumber)
+    public async Task<IPagedList<Exam>> GetAll(
+      int pageSize,
+      int pageNumber,
+      string search,
+      OrderByTypeEnum orderByType,
+      OrderByColumnExamEnum orderByColumn
+    )
     {
-      return await _context.Exam.ToPagedListAsync(pageSize, pageNumber);
+      return await _context.Exam
+      .OrderBy($"{orderByColumn.ToString()} {orderByType.ToString()}")
+      .Where(c => c.Name.Contains(search)).ToPagedListAsync(pageNumber, pageSize);
     }
 
     public void Update(Exam exam)

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 using API_GrupoFleury.Dtos;
 using System.Threading.Tasks;
+using API_GrupoFleury.Enum;
 
 namespace API_GrupoFleury.controller
 {
@@ -26,10 +27,19 @@ namespace API_GrupoFleury.controller
     [HttpGet]
     public async Task<ActionResult> GetAllScheduling(
       [FromQuery] int pageNumber = 1,
-      [FromQuery] int pageSize = 5
+      [FromQuery] int pageSize = 5,
+      [FromQuery] string search = "",
+      [FromQuery] OrderByTypeEnum orderByType = OrderByTypeEnum.ASC,
+      [FromQuery] OrderByColumnSchedulingEnum orderByColumn = OrderByColumnSchedulingEnum.Date
     )
     {
-      var result = await _schedulingService.GetAll(pageNumber, pageSize);
+      var result = await _schedulingService.GetAll(
+        pageNumber,
+        pageSize,
+        search,
+        orderByType,
+        orderByColumn
+      );
       return new ObjectResult(result);
     }
 

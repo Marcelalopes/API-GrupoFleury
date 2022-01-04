@@ -1,11 +1,12 @@
 using System;
-using System.Collections.Generic;
+using System.Linq.Dynamic.Core;
 using API_GrupoFleury.models;
 using API_GrupoFleury.Context;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using API_GrupoFleury.Enum;
 
 namespace API_GrupoFleury.Repository
 {
@@ -16,9 +17,11 @@ namespace API_GrupoFleury.Repository
     {
       _context = context;
     }
-    public async Task<IPagedList<Scheduling>> GetAll(int pageSize, int pageNumber)
+    public async Task<IPagedList<Scheduling>> GetAll(int pageNumber, int pageSize, string search, OrderByTypeEnum orderByType, OrderByColumnSchedulingEnum orderByColumn)
     {
-      return await _context.Scheduling.ToPagedListAsync(pageSize, pageNumber);
+      return await _context.Scheduling
+      .OrderBy($"{orderByColumn.ToString()} {orderByType.ToString()}")
+      .Where(c => c.ClientCpf.Contains(search)).ToPagedListAsync(pageSize, pageNumber);
     }
     public async Task<Scheduling> add(Scheduling scheduling)
     {

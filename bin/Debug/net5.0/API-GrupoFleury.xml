@@ -4,7 +4,7 @@
         <name>API-GrupoFleury</name>
     </assembly>
     <members>
-        <member name="M:API_GrupoFleury.Controllers.AddressController.GetAllAddress(System.Int32,System.Int32)">
+        <member name="M:API_GrupoFleury.Controllers.AddressController.GetAllAddress(System.Int32,System.Int32,System.String,API_GrupoFleury.Enum.OrderByTypeEnum,API_GrupoFleury.Enum.OrderByColumnAddressEnum)">
             <summary>Listar Endereços</summary>
             <returns>Este endpoint deve ser usando para listar todos osendereços</returns>
             <response code="200">Quando estiver OK</response>
@@ -58,7 +58,7 @@
             <response code="204"> Quando estiver OK </response>
             <response code="404"> Quando estiver com ERROR </response>
         </member>
-        <member name="M:API_GrupoFleury.controller.ClientController.GetAllClient(System.Int32,System.Int32)">
+        <member name="M:API_GrupoFleury.controller.ClientController.GetAllClient(System.Int32,System.Int32,System.String,API_GrupoFleury.Enum.OrderByTypeEnum,API_GrupoFleury.Enum.OrderByColumnClientEnum)">
             <summary>Listar Clientes</summary>
             <returns>Este endpoint deve ser usando para listar todos os Clientes cadastrados</returns>
             <response code="200">Quando estiver OK</response>
@@ -136,7 +136,7 @@
              <response code="204"> Quando não encontrar a Categoria </response>
              <response code="404"> Quando estiver com ERROR </response>
         </member>
-        <member name="M:API_GrupoFleury.controller.ExamController.GetAllExams(System.Int32,System.Int32)">
+        <member name="M:API_GrupoFleury.controller.ExamController.GetAllExams(System.Int32,System.Int32,System.String,API_GrupoFleury.Enum.OrderByTypeEnum,API_GrupoFleury.Enum.OrderByColumnExamEnum)">
             <summary>Listar todos os Exames</summary>
             <returns> Esse endpoint deve ser usado quando for preciso listar todos os exames </returns>
             <response code="200"> Quando estiver OK </response>
@@ -188,7 +188,7 @@
             <response code = "204" > Quando estiver OK </response>
             <response code = "404" > Quando estiver com ERROR</response>
         </member>
-        <member name="M:API_GrupoFleury.controller.SchedulingController.GetAllScheduling(System.Int32,System.Int32)">
+        <member name="M:API_GrupoFleury.controller.SchedulingController.GetAllScheduling(System.Int32,System.Int32,System.String,API_GrupoFleury.Enum.OrderByTypeEnum,API_GrupoFleury.Enum.OrderByColumnSchedulingEnum)">
             <summary>Listar Agendamentos</summary>
             <returns>Este endpoint deve ser usando para listar todos os agendamentos marcados</returns>
             <response code="200">Quando estiver OK</response>
