@@ -21,7 +21,7 @@ namespace API_GrupoFleury.Repository
     {
       return await _context.Scheduling
       .OrderBy($"{orderByColumn.ToString()} {orderByType.ToString()}")
-      .Where(c => c.ClientCpf.Contains(search)).ToPagedListAsync(pageSize, pageNumber);
+      .Where(c => c.ClientCpf.Contains(search)).ToPagedListAsync(pageNumber, pageSize);
     }
     public async Task<Scheduling> add(Scheduling scheduling)
     {

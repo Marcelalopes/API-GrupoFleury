@@ -30,7 +30,7 @@ namespace API_GrupoFleury.Repository
       .OrderBy(
         $"{orderByColumn.ToString()} { orderByType.ToString()}"
       )
-      .Where(c => c.City.Contains(search))
+      .Where(c => c.ZipCode.Contains(search) || c.City.Contains(search))
       .ToPagedListAsync(pageNumber, pageSize);
     }
 
