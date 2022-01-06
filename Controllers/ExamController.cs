@@ -106,6 +106,12 @@ namespace API_GrupoFleury.controller
       return result ? new OkResult() : new NotFoundResult();
     }
 
+    /// <summary>Listar Exames por nome</summary>
+    /// <returns> Esse endpoint deve ser usado quando for preciso listar exames pelo nome </returns>
+    /// <param name ="name"> Esse nome deve ser o nome do exame que vc deseja listar</param>
+    /// <response code="200"> Quando estiver OK </response>
+    /// <response code="204"> Quando não encontrar a Categoria </response>
+    /// <response code="404"> Quando estiver com ERROR </response>
     [HttpGet("{name}:string")]
     public async Task<ActionResult<ExamsDto>> SearchByName(string name)
     {
