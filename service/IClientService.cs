@@ -16,7 +16,9 @@ namespace API_GrupoFleury.service
       OrderByTypeEnum orderByType,
       OrderByColumnClientEnum orderByColumn
     );
-    Task<ClientsDto> Search(String cpf);
+
+    ClientsDto SearchByCpf(string cpf);
+    IEnumerable<ClientsDto> SearchByName(string name);
     Task<ClientNewDto> Add(ClientNewDto client);
     void Update(ClientsDto client);
     void Desativar(ClientsDto client);

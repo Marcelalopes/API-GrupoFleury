@@ -105,5 +105,12 @@ namespace API_GrupoFleury.controller
       var result = _examService.Delete(id);
       return result ? new OkResult() : new NotFoundResult();
     }
+
+    [HttpGet("{name}:string")]
+    public async Task<ActionResult<ExamsDto>> SearchByName(string name)
+    {
+      var result = await _examService.SearchByName(name);
+      return new ObjectResult(result);
+    }
   }
 }

@@ -49,11 +49,22 @@ namespace API_GrupoFleury.controller
     /// <response code="200"> Quando estiver OK </response>
     /// <response code="204"> Quando não encontrar a Categoria </response>
     /// <response code="404"> Quando estiver com ERROR </response>
-    [HttpGet("{cpf}:String")]
-    public async Task<ActionResult<SchedulingsDto>> ListarAgendamento(String cpf)
+    [HttpGet("searchByCpf/{cpf}:String")]
+    public ActionResult SearchByCpf(String cpf)
     {
-      var result = await _schedulingService.ListarPorCpf(cpf);
-      return new ObjectResult(result);
+      return new OkObjectResult(_schedulingService.SearchByCpf(cpf));
+    }
+
+    /// <summary> Listar um agendamento por data </summary>
+    /// <returns> Esse endpoint deve ser usado quando for preciso listar um agendamento pela data</returns>
+    /// <param name="date"> Essa data deve ser a data do agendamento que deseja listar </param>
+    /// <response code="200"> Quando estiver OK </response>
+    /// <response code="204"> Quando não encontrar a Categoria </response>
+    /// <response code="404"> Quando estiver com ERROR </response>
+    [HttpGet("searchByDate/{date}:DateTime")]
+    public ActionResult SearchByDate(DateTime date)
+    {
+      return new OkObjectResult(_schedulingService.SearchByDate(date));
     }
 
     /// <summary>Criar um agendamento </summary>

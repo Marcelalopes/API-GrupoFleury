@@ -64,5 +64,10 @@ namespace API_GrupoFleury.service
     {
       return _examRepository.Delete(id);
     }
+    public async Task<ExamsDto> SearchByName(string name)
+    {
+      var result = await _examRepository.Search(name);
+      return _mapper.Map<ExamsDto>(result);
+    }
   }
 }

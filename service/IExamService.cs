@@ -19,5 +19,6 @@ namespace API_GrupoFleury.service
     Task<ExamNewDto> Add(ExamNewDto exam);
     void Update(ExamUpdateDto exam);
     Boolean Delete(Guid id);
+    Task<ExamsDto> SearchByName(string name);
   }
 }

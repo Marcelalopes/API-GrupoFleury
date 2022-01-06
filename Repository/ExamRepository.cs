@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using X.PagedList;
 using API_GrupoFleury.Enum;
 using System.Linq.Dynamic.Core;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_GrupoFleury.Repository
 {
@@ -54,6 +55,10 @@ namespace API_GrupoFleury.Repository
     {
       _context.Exam.Update(exam);
       _context.SaveChanges();
+    }
+    public async Task<Exam> Search(string name)
+    {
+      return await _context.Exam.FirstAsync(c => c.Name == name);
     }
   }
 }

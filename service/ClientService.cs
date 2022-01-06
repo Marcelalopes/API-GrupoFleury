@@ -68,10 +68,14 @@ namespace API_GrupoFleury.service
       _clientRepository.Desativar(_mapper.Map<Client>(desativeClient));
     }
 
-    public async Task<ClientsDto> Search(string cpf)
+    public ClientsDto SearchByCpf(string cpf)
     {
-      var result = await _clientRepository.Search(cpf);
-      return _mapper.Map<ClientsDto>(result);
+      return _mapper.Map<ClientsDto>(_clientRepository.Search(c => c.Cpf == cpf).FirstOrDefault());
+    }
+
+    public IEnumerable<ClientsDto> SearchByName(string name)
+    {
+      return _mapper.Map<IEnumerable<ClientsDto>>(_clientRepository.Search(c => c.Name.Contains(name)));
     }
 
   }

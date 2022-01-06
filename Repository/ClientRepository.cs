@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 using API_GrupoFleury.Enum;
 using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
 
 namespace API_GrupoFleury.Repository
 {
@@ -40,9 +41,9 @@ namespace API_GrupoFleury.Repository
       .Where(c => c.Name.Contains(search)).ToPagedListAsync(pageNumber, pageSize);
     }
 
-    public async Task<Client> Search(string cpf)
+    public IEnumerable<Client> Search(Expression<Func<Client, bool>> predicate)
     {
-      return await _context.Client.FirstAsync(c => c.Cpf == cpf);
+      return _context.Client.Where(predicate);
     }
 
     public void Update(Client client)

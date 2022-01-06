@@ -10,7 +10,8 @@ namespace API_GrupoFleury.service
   public interface ISchedulingService
   {
     Task<dynamic> GetAll(int pageNumber, int pageSize, string search, OrderByTypeEnum orderByType, OrderByColumnSchedulingEnum orderByColumn);
-    Task<SchedulingsDto> ListarPorCpf(String cpf);
+    SchedulingsDto SearchByCpf(String cpf);
+    SchedulingsDto SearchByDate(DateTime date);
     Task<SchedulingNewDto> Add(SchedulingNewDto scheduling);
     void Update(SchedulingUpdateDto scheduling);
     Boolean Delete(Guid id);

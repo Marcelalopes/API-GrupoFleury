@@ -19,5 +19,6 @@ namespace API_GrupoFleury.Repository
     );
     void Update(Exam exam);
     Boolean Delete(Guid id);
+    Task<Exam> Search(string name);
   }
 }

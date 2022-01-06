@@ -42,17 +42,6 @@ namespace API_GrupoFleury.controller
       return new ObjectResult(result);
     }
 
-    /// <summary>Listar Clientes por CPF</summary>
-    /// <returns>Este endpoint deve ser usando para listar um cliente pelo seu CPF</returns>
-    /// <response code="200">Quando estiver OK</response>
-    /// <response code="400">Quando tiver com erro</response>
-    [HttpGet("{cpf}")]
-    public async Task<ActionResult<ClientsDto>> SearchClient(String cpf)
-    {
-      var result = await _clientService.Search(cpf);
-      return new ObjectResult(result);
-    }
-
     /// <summary>Cadastrar Clientes</summary>
     /// <returns>Este endpoint deve ser usando para cadastrar clientes</returns>
     /// <remarks>
@@ -138,6 +127,26 @@ namespace API_GrupoFleury.controller
 
       _clientService.Desativar(client);
       return new OkObjectResult(client);
+    }
+
+    /// <summary>Listar Clientes por CPF</summary>
+    /// <returns>Este endpoint deve ser usando para listar um cliente pelo seu CPF</returns>
+    /// <response code="200">Quando estiver OK</response>
+    /// <response code="400">Quando tiver com erro</response>
+    [HttpGet("searchByCpf/{cpf}:string")]
+    public ActionResult SearchByCpf(string cpf)
+    {
+      return new OkObjectResult(_clientService.SearchByCpf(cpf));
+    }
+
+    /// <summary>Listar Clientes por nome</summary>
+    /// <returns>Este endpoint deve ser usando para listar um cliente pelo seu nome</returns>
+    /// <response code="200">Quando estiver OK</response>
+    /// <response code="400">Quando tiver com erro</response>
+    [HttpGet("searchByName/{name}:string")]
+    public ActionResult SearchByName(string name)
+    {
+      return new OkObjectResult(_clientService.SearchByName(name));
     }
   }
 }

@@ -37,10 +37,13 @@ namespace API_GrupoFleury.service
 
       return response;
     }
-    public async Task<SchedulingsDto> ListarPorCpf(String cpf)
+    public SchedulingsDto SearchByCpf(String cpf)
     {
-      var result = await _schedulingRepository.ListarPorCpf(cpf);
-      return _mapper.Map<SchedulingsDto>(result);
+      return _mapper.Map<SchedulingsDto>(_schedulingRepository.Search(c => c.ClientCpf == cpf).FirstOrDefault());
+    }
+    public SchedulingsDto SearchByDate(DateTime date)
+    {
+      return _mapper.Map<SchedulingsDto>(_schedulingRepository.Search(c => c.Date == date).FirstOrDefault());
     }
     public async Task<SchedulingNewDto> Add(SchedulingNewDto newScheduling)
     {

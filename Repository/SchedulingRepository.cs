@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 using API_GrupoFleury.Enum;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace API_GrupoFleury.Repository
 {
@@ -42,10 +44,15 @@ namespace API_GrupoFleury.Repository
       return true;
     }
 
-    public async Task<Scheduling> ListarPorCpf(String cpf)
+    /* public async Task<Scheduling> ListarPorCpf(String cpf)
     {
       var scheduling = await _context.Scheduling.FirstAsync(s => s.ClientCpf == cpf);
       return scheduling;
+    } */
+
+    public IEnumerable<Scheduling> Search(Expression<Func<Scheduling, bool>> predicate)
+    {
+      return _context.Scheduling.Where(predicate);
     }
 
     public void Update(Scheduling scheduling)
